@@ -6,7 +6,7 @@ Authors:
 
 **DCAT & DCAT-AP presentation in [dcat-ap.ipynb](dcat-ap.ipynb)**
 
-convert to slider: `./nb2slides.sh dcat-ap.ipynb`
+convert to slides & webpdf: `./nb2slides.sh dcat-ap.ipynb`
 
 Authors:
 - Andre Castro
