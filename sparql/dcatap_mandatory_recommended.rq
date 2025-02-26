@@ -22,9 +22,8 @@ PREFIX time: <http://www.w3.org/2006/time#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?class_ ?prop ?type ?req
+SELECT * # ?class_ ?prop ?type ?req ?range
 FROM NAMED <https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/shapes.ttl> 
-FROM NAMED <https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/range.ttl> 
 FROM NAMED <https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/shapes_recommended.ttl> 
 WHERE {
         VALUES ?class_ {
@@ -42,7 +41,7 @@ WHERE {
                         sh:nodeKind ?type ;
                         sh:severity sh:Violation ;
                         sh:minCount 1  . 
-                BIND("mandatory" AS ?req)     
+                BIND("mandatory" AS ?req)
             }
         }   
         UNION
@@ -57,10 +56,5 @@ WHERE {
                 BIND("recommended" AS ?req)     
             }
         }
-
-
-
-    #   }      
-   
 }
 ORDER BY ?class_ ?req
