@@ -36,7 +36,7 @@ FROM  <https://semiceu.github.io/DCAT-AP/releases/3.0.0/html/shacl/range.ttl>
 
 WHERE {
         VALUES ?class_ {
-            dcat:Catalog
+            # dcat:Catalog
             dcat:DataService
             # dcat:Dataset
         }
