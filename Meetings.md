@@ -1,18 +1,21 @@
-# 2026.2.5
+# 2026.2.5 
 
 Paul & Andre
 
-Agenda:
+## Agenda:
 - [DCAT-AP-NL exporter](https://github.com/gdcc/exporter-dcat3) [property mapping](https://github.com/gdcc/exporter-dcat3/blob/main/application_profiles/AP_NL30/mapping/dcat-dataset.properties)
     - Paul's initial mapping https://docs.google.com/spreadsheets/d/1ij2jiPV0BphfSUu-z8pL-sfoNJs2GfebIY_olWbdMhc/edit?gid=0#gid=0
+    - 
 - DCAT-AP-NL mandatory and recommended properties for dcat:Dataset
 - OAI-PMH explain - so that become a requirement
+
+## Action Points
+* Andre: table with mandatory properties for dcat:Dataset; recommended
 
 
 "aanbevolen" (A), "optioneel" (O) of "conditioneel" (C)
 
 
-extracting iri from json
 ```
 ### Subject IRI
 subject.iri.json = $.datasetJson.persistentUrl 
@@ -44,7 +47,7 @@ props.theme.as                        = node-ref
 props.theme.node                      = theme
 ```
 
-Issues: 
+## Issues: 
 - Themes: specific to developer's context - not general places 
     - Dataverse DCAT metadata block - extracts the property 
     - Paul solution: make a generic DCAT-AP-NL mapping for DANS 
@@ -57,6 +60,4 @@ Issues:
     - dcat:keyword - range:Literal . Can't the range be a range: skos:Concept?
     - dct:language - question is this the lang of the metadata
 
-TODO (Andre): table with mandatory properties for dcat:Dataset; recommended
 
-SSHOC-NL 
