@@ -1,0 +1,6 @@
+[submodule "dcat-ap"]
+	path = dcat-ap
+	url = https://github.com/SEMICeu/DCAT-AP.git
+[submodule "dcat-ap-nl"]
+	path = dcat-ap-nl
+	url = https://github.com/Geonovum/DCAT-AP-NL30.git
