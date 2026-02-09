@@ -40,12 +40,12 @@ Install Python requirements: `pip install -r requirements.txt`
 
 ## Code/Notebooks/SPARQL queries 
 
-### Questions - Queries 
-
-1. What the mandatory properties of dcat:Dataset in DCAT-AP-NL?
-    1. include cardinality and property range
-2. What the recommended properties of dcat:Dataset in DCAT-AP-NL
-    2. include cardinality and property range
+**[requirements-analysis.ipynb](requirements-analysis.ipynb)**
+* Questions - Queries 
+    1. What the mandatory properties of dcat:Dataset in DCAT-AP-NL?
+        1. include cardinality and property range
+    2. What the recommended properties of dcat:Dataset in DCAT-AP-NL
+        2. include cardinality and property range
 
 ## Meeting notes
 * [Meetings.md](Meetings.md)
