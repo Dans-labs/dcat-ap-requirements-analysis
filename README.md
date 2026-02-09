@@ -2,8 +2,9 @@
 
 **Goal: clear set of requirements for SSHOC-NL deliverable *2026-D06 DCAT-AP-NL Dataverse metadata exporter***
 
-## 🛠 Repository setup
+## 🛠 Repository setup 🛠 
 
+### Git Submodules
 This repository uses **Git Submodules** to manage dependencies to 
 [DCAT-AP](https://github.com/SEMICeu/DCAT-AP.git) & [DCAT-AP-NL](https://github.com/Geonovum/DCAT-AP-NL30/)
 
@@ -26,9 +27,25 @@ To clone this repo along with all its dependencies, run:
 
 If you already cloned the repo or forgot the --recursive flag, run the following to fetch the submodules: `git submodule update --init --recursive`
 
+### Python Virtual environment & requirements
+
+In the top most directory:
+
+Create a virtual environment `python3 -m venv venv`
+
+Activate it: `source venv/bin/activate`
+
+Install Python requirements: `pip install -r requirements.txt`
+
 
 ## Code/Notebooks/SPARQL queries 
 
+### Questions - Queries 
+
+1. What the mandatory properties of dcat:Dataset in DCAT-AP-NL?
+    1. include cardinality and property range
+2. What the recommended properties of dcat:Dataset in DCAT-AP-NL
+    2. include cardinality and property range
 
 ## Meeting notes
 * [Meetings.md](Meetings.md)
