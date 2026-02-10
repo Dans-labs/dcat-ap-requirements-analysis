@@ -1,6 +1,23 @@
-# DCAT-AP Requirements Analysis
+# DCAT-AP for DANS: Research and Analysis
 
-**Goal: clear set of requirements for SSHOC-NL deliverable *2026-D06 DCAT-AP-NL Dataverse metadata exporter***
+## 🗂️ Relevant files 🗂️
+
+**[requirements-analysis.ipynb](requirements-analysis.ipynb)**
+* Authors: Andre Castro (@andrecastro0o)
+* Date: 2026.02
+* Goal: understand the specifications (technically and conceptually) as to write clear set of requirements for SSHOC-NL deliverable *2026-D06 DCAT-AP-NL Dataverse metadata exporter**
+* Questions - Queries 
+    - [x]  1) What the mandatory properties of dcat:Dataset in DCAT-AP-NL?
+        - [ ] 1.1) include cardinality and property range
+    - [ ] 2) What the recommended properties of dcat:Dataset in DCAT-AP-NL
+        - [ ] 2.1) include cardinality and property range
+
+**[landscape_analysis.ipynb](landscape_analysis.ipynb) *Landscape analysis: DCAT & DCAT-AP***
+* Authors: - Alessandra Polimero (@aapolimeno)
+* Date: 2024.11
+
+
+
 
 ## 🛠 Repository setup 🛠 
 
@@ -38,23 +55,8 @@ Activate it: `source venv/bin/activate`
 Install Python requirements: `pip install -r requirements.txt`
 
 
-## Code/Notebooks/SPARQL queries 
 
-**[requirements-analysis.ipynb](requirements-analysis.ipynb)**
-* Questions - Queries 
-    1. What the mandatory properties of dcat:Dataset in DCAT-AP-NL?
-        1. include cardinality and property range
-    2. What the recommended properties of dcat:Dataset in DCAT-AP-NL
-        2. include cardinality and property range
-
-## Meeting notes
+## 📒 Meeting notes 📒
 * [Meetings.md](Meetings.md)
 
-
-## Landscape analysis
-
-* **DCAT & DCAT-AP analysis in [landscape_analysis.ipynb](landscape_analysis.ipynb)**
-    * Authors: - Alessandra Polimero
-* **DCAT & DCAT-AP presentation in [dcat-ap.ipynb](dcat-ap.ipynb)**
-    * convert to slides & webpdf: `./nb2slides.sh dcat-ap.ipynb`
 
