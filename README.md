@@ -8,16 +8,13 @@
 * Goal: understand the specifications (technically and conceptually) as to write clear set of requirements for SSHOC-NL deliverable *2026-D06 DCAT-AP-NL Dataverse metadata exporter**
 * Questions - Queries 
     - [x]  1) What the mandatory properties of dcat:Dataset in DCAT-AP-NL?
-        - [ ] 1.1) include cardinality and property range
+        - [ ] 1.1) include cardinality (`shacl:minCount` & `shacl:maxCount` ) and property range
     - [ ] 2) What the recommended properties of dcat:Dataset in DCAT-AP-NL
         - [ ] 2.1) include cardinality and property range
 
 **[landscape_analysis.ipynb](landscape_analysis.ipynb) *Landscape analysis: DCAT & DCAT-AP***
 * Authors: - Alessandra Polimero (@aapolimeno)
 * Date: 2024.11
-
-
-
 
 ## 🛠 Repository setup 🛠 
 
@@ -28,11 +25,6 @@ This repository uses **Git Submodules** to manage dependencies to
 ```bash
 git submodule add https://github.com/SEMICeu/DCAT-AP.git  dcat-ap/
 git submodule add https://github.com/Geonovum/DCAT-AP-NL30.git dcat-ap-nl
-# check out DCAT-AP release 3.0.0
-cd dcat-ap 
-git checkout tags/3.0.0 -b 3.0.0
-cd ..
-# dcat-AP-NL is not using releases, so we get what is in main
 ```
 
 ### Cloning for the first time
@@ -55,6 +47,12 @@ Activate it: `source venv/bin/activate`
 Install Python requirements: `pip install -r requirements.txt`
 
 
+## Note on DCAT-AP versions 
+
+> [!NOTE]
+> Note that while, at moment of writing DCAT-AP-NL is basing is profile in DCAT-AP v3.0.0, from June 2023.</br>
+DCAT-AP v3.0.1 includes some important changes (see <a href="https://github.com/SEMICeu/DCAT-AP/blob/master/releases/3.0.1/CHANGELOG.md">3.0.1/CHANGELOG.md</a>) including the [dcat-ap/releases/3.0.1/shacl/ranges.ttl](dcat-ap/releases/3.0.1/shacl/ranges.ttl) which is important for these requirements.
+Hence this requirement analysis will be **based on DCAT-AP 3.0.1**, although DCAT-AP-NL, at the time of writing (2026.02.10) is still based on DCAT-AP 3.0.0  
 
 ## 📒 Meeting notes 📒
 * [Meetings.md](Meetings.md)
