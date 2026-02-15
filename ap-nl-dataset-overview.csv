@@ -1,0 +1,6 @@
+property,range
+dct:accessRights,dct:RightsStatement
+dcat:contactPoint,vcard:Kind
+dct:creator,foaf:Agent
+dct:publisher,foaf:Agent
+dcat:theme,skos:Concept
