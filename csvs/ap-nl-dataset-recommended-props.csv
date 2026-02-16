@@ -1,0 +1,12 @@
+dataset_prop,profile
+http://www.w3.org/ns/dcat#contactPoint,ap
+http://www.w3.org/ns/dcat#distribution,ap
+http://www.w3.org/ns/dcat#keyword,ap
+http://purl.org/dc/terms/publisher,ap
+http://purl.org/dc/terms/spatial,ap
+http://purl.org/dc/terms/temporal,ap
+http://www.w3.org/ns/dcat#theme,ap
+http://purl.org/dc/terms/conformsTo,ap-NL
+http://xmlns.com/foaf/0.1/page,ap-NL
+http://www.w3.org/ns/dcat#landingPage,ap-NL
+http://purl.org/dc/terms/language,ap-NL
