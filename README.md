@@ -2,15 +2,13 @@
 
 ## 🗂️ Relevant files 🗂️
 
+**[ap-nl-dataset-overview.csv](ap-nl-dataset-overview.csv)** - Overview of DCAT-AP + DCAT-AP Dataset mandatory properties
+
 **[requirements-analysis.ipynb](requirements-analysis.ipynb)**
 * Authors: Andre Castro (@andrecastro0o)
 * Date: 2026.02
 * Goal: understand the specifications (technically and conceptually) as to write clear set of requirements for SSHOC-NL deliverable *2026-D06 DCAT-AP-NL Dataverse metadata exporter**
-* Questions - Queries 
-    - [x]  1) What the mandatory properties of dcat:Dataset in DCAT-AP-NL?
-        - [ ] 1.1) include cardinality (`shacl:minCount` & `shacl:maxCount` ) and property range
-    - [ ] 2) What the recommended properties of dcat:Dataset in DCAT-AP-NL
-        - [ ] 2.1) include cardinality and property range
+
 
 **[landscape_analysis.ipynb](landscape_analysis.ipynb) *Landscape analysis: DCAT & DCAT-AP***
 * Authors: - Alessandra Polimero (@aapolimeno)
