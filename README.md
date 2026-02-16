@@ -4,8 +4,9 @@
 
 **Overview CSVs**
 
-* **[ap-nl-dataset-overview.csv](ap-nl-dataset-overview.csv)** - Overview of DCAT-AP + DCAT-AP-NL Dataset mandatory properties
-* **[ap-nl-dataset-CVs.csv](ap-nl-dataset-CVs.csv)**  Overview of DCAT-AP Dataset properties with controlled vocs as range
+* **[csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv)** - Overview of DCAT-AP + DCAT-AP-NL Dataset **mandatory** properties
+* **[csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv)** - Overview of DCAT-AP + DCAT-AP-NL Dataset **recommended** properties
+* **[csvs/ap-nl-dataset-CVs.csv](csvs/ap-nl-dataset-CVs.csv)**  Overview of DCAT-AP Dataset properties with controlled vocs as range
 
 **[requirements-analysis.ipynb](requirements-analysis.ipynb)**
 * Authors: Andre Castro (@andrecastro0o)
