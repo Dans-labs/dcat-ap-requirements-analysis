@@ -77,20 +77,40 @@ Some of the properties (object properties) require its value to be another insta
 
 ### property dct:accessRights  target class dct:RightsStatement
 
-
 **Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`
 
 **In [DCAT-AP-NL dct:accessRights](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-access-rights) is a mandatory Dataset object property.**
 The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named `Authority List](http://publications.europa.eu/resource/authority/access-right). 
 Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted; non-public.
 
-As all of DANS datasets are public, restriction only happens at the Distribution level and not at the Dataset level. Hence, the simple and correct choice is to make the statement: this dataset has dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>, for all of the datasets.
+As all of DANS datasets are public, **restriction only happens at the Distribution level** and not at the Dataset level. Hence, the simple and correct choice is to make the statement: this dataset has `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`, for all of the datasets.
 
-```ttl
-xyz a dcat:Dataset;
-    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>
+### supplement dct:accessRights with dct:license
+
+<div style="border: 4px solid orange; padding: 10px; border-radius: 5px;">
+Although DCAT-AP, does not make this recommendation **We should supplement the accessRights statement, by adding to Dataset:**
+
+* `dct:license <https://doi.org/10.17026/fp39-0x58>; #DANS License` OR `dct:license <http://creativecommons.org/publicdomain/zero/1.0>`, etc (see Dataverse license metadata below)
+
+```json
+# dataverse JSON metadata 
+
+        "license": {
+            "name": "DANS Licence",
+            "uri": "https://doi.org/10.17026/fp39-0x58",
+            "iconUri": ""
+        },
 ```
 
+```json
+xyz a dcat:Dataset ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+    dct:license <http://creativecommons.org/publicdomain/zero/1.0> ;
+    dct:distribution :dist01 .
+```
+
+**See section [property dcat:distribution section target class dcat:Distribution](#property-dcatdistribution-target-class-dcatdistribution) for more info on Distribution access-rights & license**
+</div>
 
 ### property dcat:contactPoint target class vcard:Kind
 
@@ -203,7 +223,7 @@ We might need to skip the `dct:type` property (which defines the nature of the a
 
 ### property dct:publisher target class foaf:Agent
 
-* An entity (organisation) responsible for making the Dataset available. 	
+* An entity (organisation) responsible for making the Dataset available.
 * If the Agent is an organisation, the use of the Organization Ontology is recommended. 
 * there can only be 1 publisher
 
@@ -229,14 +249,79 @@ In the mean time, until bug is fixe, we might need to go with the incorrect stat
      ] ;
 ```
 
+<div style="border: 4px solid orange; padding: 10px; border-radius: 5px;">
 
-### property dcat:distribution target class dcat:Distribution [WORKING ON]
+### property dcat:distribution target class dcat:Distribution 
 
-* conditional: if there are files in dataset. Does not apply to the ODP
+* Definition: A physical embodiment of the Dataset in a particular format. 
+* conditional property: if there are files in dataset. Does not apply to the ODP
 
-Distribution documentation:
-* https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Distribution
-* https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#distribution-dcat-distribution
+
+**Mandatory dcat:Distribution properties:**
+* dcat:accessURL (DCAT-AP)  ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
+* dct:license (DCAT-AP-NL) - CANNOT be implement because license in DANS DSs, since there is currently no license at file-level (Linda and Alessandra have been workinng on this)
+
+**Additional DANS properties**:
+* dct:accessRights - allowed values:
+    * `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `"restricted": false`
+    * `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `"restricted": true`
+
+
+
+**Interesting (optional) dcat:Distribution properties:**
+* dct:issue (data property) The date of formal issuance (e.g., publication)
+
+
+* http://spdx.org/rdf/terms#checksum (object property) [More on Checksum class](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Checksum)
+    * algorithm = SHA1  (used by Dataverse)
+    * checksum value
+* dct:format (object property) - Although [dct:MediaTypeOrExtent](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#MediaTypeOrExtent) & [dct:MediaType](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#MediaType) classes to not offer info class properties
+
+
+```json
+xyz a dcat:Dataset ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+    dct:license <http://creativecommons.org/publicdomain/zero/1.0> ;
+    dct:distribution :dist01 .
+
+dis01 a dcat:Distribution ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/RESTRICTED> ;
+
+```
+
+
+SSH DS file (distribution) metadata:
+
+```json
+"files": [
+    {
+        "description": "Tape 1\nPlace :1) Xorugh ; 2) Sokhsharw\nDate : 1) 18-7-1998 ; 2) 21-7-1998\nPerformer(s):  \t\n1) Cheragal Avazbekova; 2) Cheragal Avazbekova, Akdodov Niyoz Surobovich\nTotal recording time: 54.10\nContents: dargîlik/folksinging\n",
+        "label": "01 Shughnan Sokhsharv 1998.wav",
+        "restricted": true,
+        "version": 3,
+        "datasetVersionId": 28743,
+        "dataFile": {
+            "id": 618769,
+            "persistentId": "",
+            "filename": "01 Shughnan Sokhsharv 1998.wav",
+            "contentType": "audio/wav",
+            "friendlyType": "Waveform Audio",
+            "filesize": 624885968,
+            "description": "Tape 1\nPlace :1) Xorugh ; 2) Sokhsharw\nDate : 1) 18-7-1998 ; 2) 21-7-1998\nPerformer(s):  \t\n1) Cheragal Avazbekova; 2) Cheragal Avazbekova, Akdodov Niyoz Surobovich\nTotal recording time: 54.10\nContents: dargîlik/folksinging\n",
+            "storageIdentifier": "surf://store:19c7aa8b525-5c20093f5098",
+            "rootDataFileId": -1,
+                "checksum": {
+                    "type": "SHA-1",
+                    "value": "6bd63de496520e16f5cc692729fccc25434fb9ae"
+                },
+            "tabularData": false,
+            "creationDate": "2026-02-20",
+            "publicationDate": "2026-02-23",
+            "fileAccessRequest": true
+        }
+    }]
+```
+
 
 
 ![img/dcatap-DistributionShape.svg](img/dcatap-DistributionShape.svg) 
@@ -246,18 +331,6 @@ image: dcat:Distribution SHACL shapes in DCAT-AP
 ![img/dcatapNL-DistributionShape.svg](img/dcatapNL-DistributionShape.svg) 
 
 image: dcat:Distribution SHACL shapes in DCAT-AP-NL. 
-
-
-**Mandatory dcat:Distribution properties:**
-* dcat:accessURL (DCAT-AP)
-* dct:license (DCAT-AP-NL)
-
-**Interesting dcat:Distribution  (optional) properties for DANS:** 
-* dct:issue (data property) The date of formal issuance (e.g., publication)
-* http://spdx.org/rdf/terms#checksum (object property) [More on Checksum class](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Checksum)
-    * algorithm = SHA1  (used by Dataverse)
-    * checksum value 
-* dct:format (object property) - Although [dct:MediaTypeOrExtent](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#MediaTypeOrExtent) & [dct:MediaType](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#MediaType) classes to not offer info class properties
 
 
 Example:
@@ -279,6 +352,8 @@ exampleMS:1T2p3o4B-dist-SHP a dcat:Distribution;
    dcat:mediaType <https://www.iana.org/assignments/media-types/application/vnd.shp>
    .
 ```
+</div>
+
 
 ###  Dataset *Data Theme* Controlled Values
 
