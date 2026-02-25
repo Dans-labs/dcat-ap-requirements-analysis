@@ -2,16 +2,17 @@
 
 ## 🗂️ Relevant files 🗂️
 
-**Overview CSVs**
+### Technical Requirements analysis/scoping
+
+* **[DCAT-AP-NL-DANS-reqs.md](DCAT-AP-NL-DANS-reqs.md)** - Technical Requirements analysis/scoping
+* **[requirements-analysis.ipynb](requirements-analysis.ipynb)**
+
+
+### Overview CSVs
 
 * **[csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv)** - Overview of DCAT-AP + DCAT-AP-NL Dataset **mandatory** properties
 * **[csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv)** - Overview of DCAT-AP + DCAT-AP-NL Dataset **recommended** properties
 * **[csvs/ap-nl-dataset-CVs.csv](csvs/ap-nl-dataset-CVs.csv)**  Overview of DCAT-AP Dataset properties with controlled vocs as range
-
-**[requirements-analysis.ipynb](requirements-analysis.ipynb)**
-* Authors: Andre Castro (@andrecastro0o)
-* Date: 2026.02
-* Goal: understand the specifications (technically and conceptually) as to write clear set of requirements for SSHOC-NL deliverable *2026-D06 DCAT-AP-NL Dataverse metadata exporter**
 
 
 **[landscape_analysis.ipynb](landscape_analysis.ipynb) *Landscape analysis: DCAT & DCAT-AP***
