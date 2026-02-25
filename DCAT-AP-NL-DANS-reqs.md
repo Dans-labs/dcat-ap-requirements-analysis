@@ -258,24 +258,37 @@ In the mean time, until bug is fixe, we might need to go with the incorrect stat
 
 
 **Mandatory dcat:Distribution properties:**
+
 * dcat:accessURL (DCAT-AP)  ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
-* dct:license (DCAT-AP-NL) - CANNOT be implement because license in DANS DSs, since there is currently no license at file-level (Linda and Alessandra have been workinng on this)
+* dct:license (DCAT-AP-NL) - CANNOT be implement since Dataverse does not allow for license at file-level (Linda and Alessandra have been workinng on this)
 
 **Additional DANS properties**:
+
 * dct:accessRights - allowed values:
-    * `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `"restricted": false`
-    * `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `"restricted": true`
-
-
+  * `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `files[].restricted": false`
+  * `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `files[].restricted": true`
 
 **Interesting (optional) dcat:Distribution properties:**
-* dct:issue (data property) The date of formal issuance (e.g., publication)
+
+* dtc:description (data prop) Source: `files[].description`
+* dct:issued (data prop) The date of formal issuance. Source: `files[].publicationDate`
+* dtc:title  (data prop). Source:`files[].label`
+* dcat:downloadURL.  Source: https://ssh.datastations.nl/api/access/datafile/ + `files[].dataFile.id`
+* dct:format file format of the Distribution. Source: `files[].dataFile.contentType` OR `files[].dataFile.friendlyType` 
+  * Note: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format key:values (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with dataverse values is best
+* dcat:packageFormat "The format of the file in which one or more data files are grouped together" Range: [IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) **Value: `<https://www.iana.org/assignments/media-types/application/zip>`**
+
+* http://spdx.org/rdf/terms#checksum (object property) 
+  * Class: a <http://spdx.org/rdf/terms#Checksum>
+  * http://spdx.org/rdf/terms#algorithm = SHA1  (used by Dataverse)
+  * http://spdx.org/rdf/terms#checksumValue
 
 
-* http://spdx.org/rdf/terms#checksum (object property) [More on Checksum class](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Checksum)
-    * algorithm = SHA1  (used by Dataverse)
-    * checksum value
-* dct:format (object property) - Although [dct:MediaTypeOrExtent](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#MediaTypeOrExtent) & [dct:MediaType](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#MediaType) classes to not offer info class properties
+**Future Distribution properties:**
+
+* dct:license (DCAT-AP-NL) - *Once Dataverse allows for license at file level**
+* odrl:hasPolicy has policy -	Policy 	0..1 	The policy expressing the rights associated with the distribution if using the [ODRL] vocabulary. **Once ODRL work is in place**
+* dct:conformsTo (linked schemas). **Once structured data has accompaining schema**
 
 
 ```json
@@ -285,12 +298,51 @@ xyz a dcat:Dataset ;
     dct:distribution :dist01 .
 
 dis01 a dcat:Distribution ;
-    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/RESTRICTED> ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+    dct:issued "2025-09-11"^^xsd:date ;
+    dcat:downloadURL <https://ssh.datastations.nl/api/access/datafile/617085>
+    spdx:checksum [
+      a spdx:Checksum ;
+      spdx:algorithm "SHA1" ; #  (used by Dataverse)
+      spdx:checksumValue  "f604fa61ba714a8860dc6d416a6db5dea7d9dfea" .
+    ]
+
 
 ```
 
 
 SSH DS file (distribution) metadata:
+
+```json
+        "files": [
+            {
+                "description": "Codebook Hbo Monitor data 2024",
+                "label": "HBO 2024 documentatie.pdf",
+                "restricted": false,
+                "version": 1,
+                "datasetVersionId": 28330,
+                "dataFile": {
+                    "id": 617085,
+                    "persistentId": "",
+                    "filename": "HBO 2024 documentatie.pdf",
+                    "contentType": "application/pdf",
+                    "friendlyType": "Adobe PDF",
+                    "filesize": 2036650,
+                    "description": "Codebook Hbo Monitor data 2024",
+                    "storageIdentifier": "surf://store:199336ad9b0-31bc5a7f1ba7",
+                    "rootDataFileId": -1,
+                    "checksum": {
+                        "type": "SHA-1",
+                        "value": "f604fa61ba714a8860dc6d416a6db5dea7d9dfea"
+                    },
+                    "tabularData": false,
+                    "creationDate": "2025-09-10",
+                    "publicationDate": "2025-09-11",
+                    "fileAccessRequest": true
+                }
+            },
+```
+
 
 ```json
 "files": [
