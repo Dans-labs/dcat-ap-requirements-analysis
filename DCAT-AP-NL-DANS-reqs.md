@@ -19,34 +19,6 @@
 | 0.1.1       | 2025-06-03 | Ricarda Braukmann | Initial feedback on draft  |              |
 | 0.2.0       | 2026-02-05 | Andre Castro      | Requirements               |              |
 
-# Table of Contents
-
-[[Deliverable 2026-D06 DCAT-AP-NL metadata exported for Dataverse
-1](#deliverable-2026-d06-dcat-ap-nl-metadata-exported-for-dataverse)](#deliverable-2026-d06-dcat-ap-nl-metadata-exported-for-dataverse)
-
-[[Document Control 1](#document-control)](#document-control)
-
-[[Document Revision History
-1](#document-revision-history)](#document-revision-history)
-
-[[Table of Contents 1](#table-of-contents)](#table-of-contents)
-
-[[Context 1](#context)](#context)
-
-[[Recent Developments: Dataverse exporter for DCAT-AP 3
-2](#recent-developments-dataverse-exporter-for-dcat-ap-3)](#recent-developments-dataverse-exporter-for-dcat-ap-3)
-
-[[Goal 2](#goal)](#goal)
-
-[[Reasoning 3](#_Toc442226383)](#_Toc442226383)
-
-[[Synergies 4](#_Toc1221089125)](#_Toc1221089125)
-
-[[Requirements 4](#requirements)](#requirements)
-
-[[Mandatory Dataset Properties 5](#_Toc1023962494)](#_Toc1023962494)
-
-[[Links and References 5](#links-and-references)](#links-and-references)
 
 # Context
 
@@ -66,7 +38,7 @@ research data, such as dcat:Dataset, dcat:Distribution,
 dcat:DataService.
 
 [DCAT-AP-NL (3.0)](https://geonovum.github.io/DCAT-AP-NL30/)is an
-extension of DCAT-AP, which extends DCAT-AP, with further restrictions,
+extension of DCAT-AP, which expands DCAT-AP, with further restrictions,
 mostly through expansion of mandatory and recommended properties of
 DCAT-AP (3.0). For instance, the properties dct:identifier and
 dct:accessRights for dcat:Dataset are mandatory in DCAT-AP-NL 3, while
@@ -100,11 +72,11 @@ compliant.**
 
 # Goal
 
-The goal of this deliverable is to customize and deploy, in the ODISSEI
-Portal and Data Station SSH, a <u>DCAT-AP-NL (3.0) metadata exporter for
-Dataverse.</u> Such metadata exporter should be able to represent a
-Dataverse dataset in comformance with the DCAT-AP-NL (3.0)
-specification. The metadata exporter shall be able to represent the
+The goal of this deliverable is to **customize and deploy** the [DCAT-AP Dataverse metadata exporter](https://github.com/gdcc/exporter-dcat3), in order to enable **Dataset metadata exports**, **complient with DCAT-AP-NL (3.0)**, in both **ODISSEI Portal** and **Data Station SSH**.
+
+<!--        TODO:REVIEW
+
+The  exporter shall be able to represent the
 mandatory and recommended properties; use of recommended controlled
 terms from specified controlled vocabularies; and represent
 complementary class instances, such as dcat:Distribution for expressing
@@ -124,23 +96,27 @@ in
   (ttl)](https://data.europa.eu/api/hub/repo/datasets/18489cb7-bce7-4d44-a138-795b390d2109~~1.ttl?useNormalizedId=true&locale=en)
 
 <img src="media/image1.png" style="width:4.6875in;height:4.90764in" />
+-->
 
-# 
 
 # Requirements
 
-#### Provider requirements by SEMIC-DCAT-AP 
+## Data Provider requirements by SEMIC-DCAT-AP 
 
 From [SEMIC
 documentation](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#provider-requirements:~:text=4%2E1%2E1%20Provider%20requirements)
 *4.1.1 Provider requirements*: (summarized under next section)
 
+[!Info] Crossed-out items are out of scope.
+
+<!-- TODO: integrate these items in  SSHOC-NL/DANS -->
+
 *In order to conform to this Application Profile, an application that
 provides metadata MUST:*
 
-- *Provide a description of the Catalogue, including at least the
+- <s>*Provide a description of the Catalogue, including at least the
   mandatory properties specified for the class
-  [Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue).*
+  [Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue).*</s>
 
 - *Provide descriptions of **Datasets** in the Catalogue, including at
   least the mandatory properties for the class
@@ -150,10 +126,10 @@ provides metadata MUST:*
   Catalogue, including at least the mandatory properties for the class
   [Distribution](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Distribution).*
 
-- *Provide descriptions of Data Services, if any, of Datasets in the
+- <s>*Provide descriptions of Data Services, if any, of Datasets in the
   Catalogue, including at least the mandatory properties for the class
   [Data
-  Service](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#DataService).*
+  Service](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#DataService).*</s>
 
 - *Provide descriptions of all **organisations** involved in the
   descriptions of Catalogue and Datasets, including at least the
@@ -175,17 +151,68 @@ MAY be provided.*
 
 ## SSHOC-NL/DANS Requirements for DCAT-AP-NL metadata exporter for Dataverse
 
-- MUST be able to export metadata from Datasets indexed in ODISSEI
-  Portal (ODP) in conformance to DCAT-AP-NL. (Note: The exporter
-  <u>configuration/development/testing in the ODP should precede</u> the
-  same work in the Data Station SSH, since the docker setup of the ODP
-  provides a simpler development environment than the Data Stations)
+- MUST export metadata, in conformance with DCAT-AP-NL, from datasets indexed in ODISSEI Portal (ODP).[^3]
 
-- MUST be able to export metadata from Datasets hosted in Data Station
-  SSH in conformance to DCAT-AP-NL
+- MUST export metadata, in conformance with DCAT-AP-NL, from Datasets hosted in Data Station SSH.
 
-- The export MUST include 1 instance of dcat:Dataset describing the
-  dataset,
+- MUST export metadata in turtle (.ttl) RDF encoding
+
+- MUST focus the export in the dcat:Dataset instance and supportive entities
+
+- MUST include the following dcat:Dataset mandatory properties [DCAT-AP-NL] and for its object properties, the corresponding *target* class instances or URIs:
+  - dct:title (1..1)
+  - dct:identifier (1..1)
+  - dct:description (1..1)
+  - dct:accessRights (1..1) URI value: http://publications.europa.eu/resource/authority/access-right/PUBLIC (see [^4] Note on DANS accessRights)
+  - dcat:contactPoint (1..1) target class vcard:Kind
+  - dct:creator (1..n) target class foaf:Agent
+  - dcat:distribution (1..n) target class dcat:Distribution (conditional, if there are files in dataset)
+  - dct:publisher (1..1) target class foaf:Agent
+  - dcat:theme (1..n) target class skos:Concept from http://publications.europa.eu/resource/authority/data-theme Suggestion for SSH DS & ODP [SOCI](http://publications.europa.eu/resource/authority/data-theme/SOCI) Population and society
+
+- MUST include the following dcat:Dataset recommended properties [DCAT-AP-NL]
+  - dct:conformsTo (0..1)  Value: "DCAT-AP-NL30"; Desc: *An established standard to which the described resource conforms*.
+  - dcat:landingPage (0..n) URL "The web page that provides access to the dataset and provides additional information about the dataset. This is the original web page of the data owner."
+
+- COULD include the following dcat:Dataset recommended properties [DCAT-AP-NL]
+  - dcat:keyword  0..n  Note that dcat:keyword is data property, hence its values have to be literals, and not URIs (such as the terms in Getty AAT, ELSST, etc). 
+
+- COULD include "Keyword Getty AAT" and "Keyword ELSST" values' URIs in the dcat:theme property 
+
+- MUST include the supportive entity dcat:Distribution (value of dcat:Dataset dcat:distribution) to represent data files, with fellowing properties:
+  - MUST: dcat:accessURL [DCAT-AP] (1..1) ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
+  - WONT: <s>dct:license [DCAT-AP-NL]</s> - WONT be implemented since Dataverse does not allow for license at file-level (Linda and Alessandra have been workinng on this)
+  - MUST: dct:rights (0..1) - allowed values:
+    - `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `files[].restricted": false`
+    - `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `files[].restricted": true`
+    - SHOULD dtc:description (0..n)
+    - SHOULD dct:issued (0..1) The date of formal issuance
+    - SHOULD dtc:title  (1..n)
+    - SHOULD dcat:downloadURL (1..n) The URL of he downloadable file in a specific format.   Source: https://ssh.datastations.nl/api/access/datafile/
+    - SHOULD dct:format file format of the Distribution  (see [^5] Note on DCAT-AP-NL file-type recommendations )
+    - SHOULD spdx:checksum (0..1) (object property) [^6] with node properties:
+        * Class: a spdx:Checksum
+        * spdx:algorithm = SHA1  (used by Dataverse)
+        * spdx:checksumValue
+
+**[WIP FROM HERE DOWN] **
+
+- MUST include the supportive entity vcard:Kind (value of dcat:contactPoint) to represent data files
+
+- MUST include the supportive entity foaf:Agent (value of dcat:creator, dcat:publisher) to the creator and publisher of the dataset.
+  - 
+
+
+
+
+- Each class instance in the export MUST include property:value pairs
+  for each of the mandatory properties, according to DCAT-AP-NL
+
+
+- SHOULD allow OAI-PMH harvesting in XML RDF encoding, in Data Station SSH
+
+- COULD allow OAI-PMH harvesting in XML RDF encoding, in ODISSEI Portal. (Conceptually this is discouraged, as the ODP is an data aggregator and not a data publisher. We sould avoid the situation where datasets are harvested twice, from both the data provider and the ODP, which might lead to 2 duplicated dataset records exisiting the harvesting aggregator)
+
 
 - The export MUST include instances of dcat:Distribution to describe the
   dataset files
@@ -193,8 +220,6 @@ MAY be provided.*
 - The export SHOULD include an instance of dcat:DataService describing
   the host data repository
 
-- Each class instance in the export MUST include property:value pairs
-  for each of the mandatory properties, according to DCAT-AP-NL
 
 - Each class instance in the export SHOULD include property:value pairs
   for each of their recommended properties, according to DCAT-AP-NL
@@ -206,6 +231,12 @@ MAY be provided.*
 - COULD
 
 - WONT
+
+
+
+
+
+
 
 # Links and References
 
@@ -222,6 +253,9 @@ MAY be provided.*
 - Dataverse DCAT-AP-NL metadata exporter:
   <https://github.com/Geonovum/DCAT-AP-NL30/>
 
+
+# Footnotes
+
 [^1]: Application profile: A set of metadata elements, policies, and
     guidelines defined for a particular application.
 
@@ -230,3 +264,12 @@ MAY be provided.*
     dcat:Dataset instances in the KG being built by the VU. Yet, that
     might prove more work than serving the FAIRy Datasets in the ODISSEI
     Portal. The latter option might prove more difficult politically.
+
+[^3]: Note: The configuration/development/testing of the DCAT-AP exporter, in the Odissei Portal, should precede the same work in the Data Station SSH, since the docker setup of the ODP provides a simpler development environment than that of the Data Station SSH.
+
+[^4]: Note on DANS accessRights: The recommendation from DCAT-AP-NL is to provide a value from [Access Rights Named `Authority List](http://publications.europa.eu/resource/authority/access-right), such as public, restricted, non-public. As all of DANS datasets (metadata) is publicly accessible, restrictions only happen at the Distribution level and not at the Dataset level. Hence, the simple and correct choice is to make the statement: this dataset has `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`, for all of the datasets.
+
+[^5]: Note on DCAT-AP-NL file-type recommendations: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with Dataverse contentType or friendlyType values is best.
+      <!-- * dcat:packageFormat "The format of the file in which one or more data files are grouped together" Range: [IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) **Value: `<https://www.iana.org/assignments/media-types/application/zip>`** -->
+
+[^6]: `@prefix spdx: <http://spdx.org/rdf/terms#>`

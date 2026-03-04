@@ -64,12 +64,12 @@ Some of the properties (object properties) require its value to be another insta
 
 **Dataset *mandatory* object properties are:**
 
-* property dct:accessRights  target class dct:RightsStatement
-* property dcat:contactPoint target class vcard:Kind
-* property dct:creator  target class foaf:Agent
-* property dct:publisher target class foaf:Agent
-* property dcat:theme target class skos:Concept from http://publications.europa.eu/resource/authority/data-theme
-* property dcat:distribution target class dcat:Distribution (conditional, if there are files in dataset)
+* property dct:accessRights (1..1) target class dct:RightsStatement
+* property dcat:contactPoint (1..1) target class vcard:Kind
+* property dct:creator (1..n) target class foaf:Agent
+* property dct:publisher (1..1)target class foaf:Agent
+* property dcat:theme (1..n) target class skos:Concept from http://publications.europa.eu/resource/authority/data-theme
+* property dcat:distribution (0..n) target class dcat:Distribution (conditional, if there are files in dataset)
 <!-- 
 **Dataset *recommended* object properties are:**
 
