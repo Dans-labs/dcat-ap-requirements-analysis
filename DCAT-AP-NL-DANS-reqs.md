@@ -169,12 +169,12 @@ MAY be provided.*
   - dct:title (1..1)
   - dct:identifier (1..1)
   - dct:description (1..1)
-  - dct:accessRights (1..1) URI value: http://publications.europa.eu/resource/authority/access-right/PUBLIC (see [^4] Note on DANS accessRights)
-  - dcat:contactPoint (1..1) target class vcard:Kind
+  - dct:accessRights (1..1) URI value: http://publications.europa.eu/resource/authority/access-right/PUBLIC (see [^4] Note on DANS accessRights; see [DCAT-AP-NL-DANS-implementation-guide.md#property-dctaccessrights--target-class-dctrightsstatement](DCAT-AP-NL-DANS-implementation-guide.md#property-dctaccessrights--target-class-dctrightsstatement)) 
+  - dcat:contactPoint (1..1) target class vcard:Kind (see [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind))
   - dct:creator (1..n) target class foaf:Agent
-  - dcat:distribution (1..n) target class dcat:Distribution (conditional, if there are files in dataset)
-  - dct:publisher (1..1) target class foaf:Agent
-  - dcat:theme (1..n) target class skos:Concept from http://publications.europa.eu/resource/authority/data-theme Suggestion for SSH DS & ODP [SOCI](http://publications.europa.eu/resource/authority/data-theme/SOCI) Population and society
+  - dcat:distribution (1..n) target class dcat:Distribution (conditional, if there are files in dataset) (see [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution))
+  - dct:publisher (1..1) target class foaf:Agent (see [DCAT-AP-NL-DANS-implementation-guide.md#property-dctpublisher-target-class-foafagent](DCAT-AP-NL-DANS-implementation-guide.md#property-dctpublisher-target-class-foafagent))
+  - dcat:theme (1..n) target class skos:Concept from http://publications.europa.eu/resource/authority/data-theme Suggestion for SSH DS & ODP [SOCI](http://publications.europa.eu/resource/authority/data-theme/SOCI) Population and society (see [DCAT-AP-NL-DANS-implementation-guide.md#dataset-data-theme-controlled-values](DCAT-AP-NL-DANS-implementation-guide.md#dataset-data-theme-controlled-values))
 
 - MUST include the following dcat:Dataset recommended properties [DCAT-AP-NL]
   - dct:conformsTo (0..1)  Value: "DCAT-AP-NL30"; Desc: *An established standard to which the described resource conforms*.
@@ -185,34 +185,52 @@ MAY be provided.*
 
 - COULD include "Keyword Getty AAT" and "Keyword ELSST" values' URIs in the dcat:theme property 
 
-- MUST include the supportive entity dcat:Distribution (value of dcat:Dataset dcat:distribution) to represent data files, with fellowing properties:
-  - MUST: dcat:accessURL [DCAT-AP] (1..1) ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
-  - WONT: <s>dct:license [DCAT-AP-NL]</s> - WONT be implemented since Dataverse does not allow for license at file-level (Linda and Alessandra have been workinng on this)
-  - MUST: dct:rights (0..1) - allowed values:
+- MUST include the supportive entity dcat:Distribution (value of dcat:Dataset dcat:distribution) to represent data files, with fellowing properties: (see implementation examples in [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution))
+  - MUST include dcat:accessURL [DCAT-AP] (1..1) ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
+  - WONT include <s>dct:license [DCAT-AP-NL]</s> - WONT be implemented since Dataverse does not allow for license at file-level
+  - MUST include dct:rights (0..1) - allowed values:
     - `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `files[].restricted": false`
     - `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `files[].restricted": true`
-    - SHOULD dtc:description (0..n)
-    - SHOULD dct:issued (0..1) The date of formal issuance
-    - SHOULD dtc:title  (1..n)
-    - SHOULD dcat:downloadURL (1..n) The URL of he downloadable file in a specific format.   Source: https://ssh.datastations.nl/api/access/datafile/
-    - SHOULD dct:format file format of the Distribution  (see [^5] Note on DCAT-AP-NL file-type recommendations )
-    - SHOULD spdx:checksum (0..1) (object property) [^6] with node properties:
-        * Class: a spdx:Checksum
-        * spdx:algorithm = SHA1  (used by Dataverse)
-        * spdx:checksumValue
+    - SHOULD include dtc:description (0..n)
+    - SHOULD include dct:issued (0..1) The date of formal issuance
+    - SHOULD include dtc:title  (1..n)
+    - SHOULD include dcat:downloadURL (1..n) The URL of he downloadable file in a specific format.   Source: https://ssh.datastations.nl/api/access/datafile/
+    - SHOULD include dct:format file format of the Distribution  (see [^5] Note on DCAT-AP-NL file-type recommendations )
+    - SHOULD include spdx:checksum (0..1) (object property) [^6] with the following:
+      - Class: spdx:Checksum
+      - property: spdx:algorithm = SHA1  (used by Dataverse)
+      - property: spdx:checksumValue
 
-**[WIP FROM HERE DOWN] **
+- MUST include one supportive entity vcard:Kind (value of dcat:contactPoint) to describe the contact information where end users can send questions about the dataset. (see implementation examples in [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind))
+  - MUST include class vcard:Organization 
+  - MUST include vcard:fn (formatted name)
+  - MUST include vcard:hasEmail
+  - MUST include vcard:hasURL
+  - SHOULD include vcard:organization-name 
+  - SHOULD include dct:identifier (organization ROR)
 
-- MUST include the supportive entity vcard:Kind (value of dcat:contactPoint) to represent data files
+- MUST include the supportive entity foaf:Agent (value of dcat:creator, dcat:publisher) to describe the creator and publisher of the dataset.
+  - For dcat:creator (see [DCAT-AP-NL-DANS-implementation-guide.md#property-dctcreator--target-class-foafagent](DCAT-AP-NL-DANS-implementation-guide.md#property-dctcreator--target-class-foafagent))
+    - MUST include a node, instance of class foaf:Agent, for each creator
+    - MUST include foaf:name
+    - SHOULD include individual dct:identifier with ORCID URL as value
+    - WONT include dct:type property
+  - For dcat:publisher (see [DCAT-AP-NL-DANS-implementation-guide.md#property-dctpublisher-target-class-foafagent](DCAT-AP-NL-DANS-implementation-guide.md#property-dctpublisher-target-class-foafagent))
+    - MUST include a node, instance of class foaf:Agent
+    - MUST include foaf:name
+    - SHOULD include organization dct:identifier with ROR URL as value
+    - WONT include <s>dct:type</s> property
 
-- MUST include the supportive entity foaf:Agent (value of dcat:creator, dcat:publisher) to the creator and publisher of the dataset.
-  - 
+> [!IMPORTANT]
+> In the ODISSEI Portal each dataset should have as publisher the dataset holder (ie. publisher = LISS), however the portal classifies all datasets with `publisher = ODISSEI Portal`, which is an incorrect statement (see bug-repoer [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369)). Until bug is fixed, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
+
+
+> [!WARNING]
+> WORKING HERE
+> TODO:  decide if to include DataService/Catalog ??
 
 
 
-
-- Each class instance in the export MUST include property:value pairs
-  for each of the mandatory properties, according to DCAT-AP-NL
 
 
 - SHOULD allow OAI-PMH harvesting in XML RDF encoding, in Data Station SSH

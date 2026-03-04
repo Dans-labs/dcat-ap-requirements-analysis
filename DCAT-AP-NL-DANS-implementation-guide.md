@@ -36,7 +36,6 @@ See [csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv) & [cs
 
 ### Dataset Recommended Properties
 
-
 Recommended Dataset properties from [DCAT-AP-NL Dataset](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset) are marked with A in the documentation table and formalized in [dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl](dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl). DCAT-AP Dataset recommended properties are formalized in [dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl](dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl).
 
 [csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv) summarizes them.
@@ -242,7 +241,7 @@ For SSH DS
 
 For the ODISSEI Portal. It will be a bit tricky, since there are multiple publishers, however that information is not correct in the ODP (see [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369))
 
-In the mean time, until bug is fixe, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
+In the mean time, until the bug is fixed, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
 
 
 ```json
