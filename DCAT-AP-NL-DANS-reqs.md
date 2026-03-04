@@ -151,6 +151,11 @@ MAY be provided.*
 
 ## SSHOC-NL/DANS Requirements for DCAT-AP-NL metadata exporter for Dataverse
 
+![WARNING]
+> Use [DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md) for complementary information to the requirements.
+
+
+
 - MUST export metadata, in conformance with DCAT-AP-NL, from datasets indexed in ODISSEI Portal (ODP).[^3]
 
 - MUST export metadata, in conformance with DCAT-AP-NL, from Datasets hosted in Data Station SSH.
