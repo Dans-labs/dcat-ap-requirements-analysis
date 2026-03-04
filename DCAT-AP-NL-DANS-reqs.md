@@ -107,7 +107,7 @@ From [SEMIC
 documentation](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#provider-requirements:~:text=4%2E1%2E1%20Provider%20requirements)
 *4.1.1 Provider requirements*: (summarized under next section)
 
-> [!Info] 
+> [!IMPORTANT]
 > Crossed-out items are out of scope.
 
 <!-- TODO: integrate these items in  SSHOC-NL/DANS -->
