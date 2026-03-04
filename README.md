@@ -4,7 +4,11 @@
 
 ### Technical Requirements analysis/scoping
 
-* **[DCAT-AP-NL-DANS-reqs.md](DCAT-AP-NL-DANS-reqs.md)** - Technical Requirements analysis/scoping
+* **[DCAT-AP-NL-DANS-reqs.md](DCAT-AP-NL-DANS-reqs.md)** - Technical Requirements
+* **[DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md)** - implementation guidelines
+
+### Jupyter Notebooks
+
 * **[requirements-analysis.ipynb](requirements-analysis.ipynb)**
 
 

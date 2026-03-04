@@ -1,3 +1,46 @@
+# 2026.2.25
+Paul & Andre
+
+Action points:
+* dcat:inCatalog - not a valid property - github issue
+* lang labels - removed from all string as we do not know the lang
+* modules for creators
+* no statemens need for URIS that are defined else where
+
+
+
+Requirements document
+
+
+DCAT-AP meeting https://docs.google.com/document/d/1elFLsRdPowFCriQheNkFZVxx0by-JPmmJUEwxbtBORg/edit?usp=sharing
+
+Exporter
+
+    dcat:inCatalog
+
+* implementation from Sjak for multiple instances of author
+
+@prefix odp:<https://portal.odissei.nl/#>
+
+dct:creator odp:creator1, odp:creator2 
+
+
+odp:creator1 a foaf:Agent ;
+    foaf:name "Paul Boon" ;
+    dct:identifier <orcid.org>
+
+------ 
+
+
+dct:creator odp:creator1, odp:creator2 
+
+
+odp:PaulBoon a foaf:Agent ;
+    foaf:name "Paul Boon" ;
+    dct:identifier <orcid.org>
+
+
+
 # 2026.2.5 
 
 Paul & Andre
