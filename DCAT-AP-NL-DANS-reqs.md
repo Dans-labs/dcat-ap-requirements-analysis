@@ -107,7 +107,8 @@ From [SEMIC
 documentation](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#provider-requirements:~:text=4%2E1%2E1%20Provider%20requirements)
 *4.1.1 Provider requirements*: (summarized under next section)
 
-[!Info] Crossed-out items are out of scope.
+> [!Info] 
+> Crossed-out items are out of scope.
 
 <!-- TODO: integrate these items in  SSHOC-NL/DANS -->
 
@@ -151,7 +152,7 @@ MAY be provided.*
 
 ## SSHOC-NL/DANS Requirements for DCAT-AP-NL metadata exporter for Dataverse
 
-![WARNING]
+> [!IMPORTANT]
 > Use [DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md) for complementary information to the requirements.
 
 
