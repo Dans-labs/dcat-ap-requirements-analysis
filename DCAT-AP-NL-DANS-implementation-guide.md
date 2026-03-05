@@ -13,7 +13,7 @@ image: DCAT-AP dcat:Dataset SHACL shapes, based on above query ,rendered by [htt
 image: DCAT-AP-NL dcat:Dataset SHACL shapes, based on above query ,rendered by [https://shacl-play.sparna.fr/play/](https://shacl-play.sparna.fr/play/). 
 
 
-### Dataset Mandatory Properties
+## Dataset Mandatory Properties
 
 See [csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv) & [csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv) where this info is compiled
 
@@ -34,7 +34,7 @@ See [csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv) & [cs
 * http://www.w3.org/ns/dcat#distribution 
    * dcat:distribution is conditional (for datasets that hold files) but it is very important property
 
-### Dataset Recommended Properties
+## Dataset Recommended Properties
 
 Recommended Dataset properties from [DCAT-AP-NL Dataset](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset) are marked with A in the documentation table and formalized in [dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl](dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl). DCAT-AP Dataset recommended properties are formalized in [dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl](dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl).
 
@@ -51,14 +51,14 @@ Below is the same list, with the ones to implement, in bold. And crossed the one
 * <s>http://purl.org/dc/terms/temporal</s> NA
 
 
-### Dataset Optional Properties
+## Dataset Optional Properties
 
 Optional Dataset properties DCAT-AP-NL & DCAT-AP COULD be implemented, if they are "low-hanging-fruit" and provide important information for the DCAT metadata export.
 
 From [DCAT-AP-NL Dataset](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset) are marked with "O" in the documentation table and formalized in [dcat-ap-nl/shapes/dcat-ap-nl-OPT.ttl](dcat-ap-nl/shapes/dcat-ap-nl-OPT.ttl). DCAT-AP Dataset recommended properties are formalized in [dcat-ap-nl/shapes/dcat-ap-OPT.ttl](dcat-ap-nl/shapes/dcat-ap-OPT.ttl) .
 
 
-### Dataset Object Properties
+## Dataset Object Properties
 Some of the properties (object properties) require its value to be another instance of a class node, which can be implemented with its unique URI or a blank node.
 
 **Dataset *mandatory* object properties are:**
@@ -452,3 +452,11 @@ Other URIs from other controlled vocabularies can be used. Options for this are
             }
             
         ```
+
+## Catalog
+
+*A catalogue or repository that hosts the Datasets or Data Services being described.*
+
+Class documentation:
+* https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#catalog-dcat-catalog
+* https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue

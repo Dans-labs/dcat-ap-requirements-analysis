@@ -70,6 +70,12 @@ the very positive points we see in the extensions are:
 quality of the output, ensuring the output is as rich and DCAT-AP-NL
 compliant.**
 
+## Data Portals using DCAT-AP
+
+Nationaal Georegister [Example dataset 9ffddf33-8ae5-423f-b275-6bc2580b83e6](https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/9ffddf33-8ae5-423f-b275-6bc2580b83e6) (see [dcat-ap metadata record](https://www.nationaalgeoregister.nl/geonetwork/srv/api/records/9ffddf33-8ae5-423f-b275-6bc2580b83e6/formatters/dcat-ap-nl-3?output=xml))
+![Nationaal Georegister dataset screenshots](img/NGR.png)
+
+
 # Goal
 
 The goal of this deliverable is to **customize and deploy** the [DCAT-AP Dataverse metadata exporter](https://github.com/gdcc/exporter-dcat3), in order to enable **Dataset metadata exports**, **complient with DCAT-AP-NL (3.0)**, in both **ODISSEI Portal** and **Data Station SSH**.
@@ -155,8 +161,6 @@ MAY be provided.*
 > [!IMPORTANT]
 > Use [DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md) for complementary information to the requirements.
 
-
-
 - MUST export metadata, in conformance with DCAT-AP-NL, from datasets indexed in ODISSEI Portal (ODP).[^3]
 
 - MUST export metadata, in conformance with DCAT-AP-NL, from Datasets hosted in Data Station SSH.
@@ -181,7 +185,7 @@ MAY be provided.*
   - dcat:landingPage (0..n) URL "The web page that provides access to the dataset and provides additional information about the dataset. This is the original web page of the data owner."
 
 - COULD include the following dcat:Dataset recommended properties [DCAT-AP-NL]
-  - dcat:keyword  0..n  Note that dcat:keyword is data property, hence its values have to be literals, and not URIs (such as the terms in Getty AAT, ELSST, etc). 
+  - dcat:keyword  (0..n)  Note that dcat:keyword is data property, hence its values have to be literals, and not URIs (such as the terms in Getty AAT, ELSST, etc). 
 
 - COULD include "Keyword Getty AAT" and "Keyword ELSST" values' URIs in the dcat:theme property 
 
@@ -224,11 +228,10 @@ MAY be provided.*
 > [!IMPORTANT]
 > In the ODISSEI Portal each dataset should have as publisher the dataset holder (ie. publisher = LISS), however the portal classifies all datasets with `publisher = ODISSEI Portal`, which is an incorrect statement (see bug-repoer [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369)). Until bug is fixed, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
 
+- SHOULD include an instance of dcat:Catalog, in each export, to represent the data-repository/data-portal (DS SSH or ODP), and establish the relation *this catalog (ODP) has dataset* via dcat:Catalog dcat:dataset, towards dcat:Dataset instance. (see [DCAT-AP-NL-DANS-implementation-guide.md#Catalog](DCAT-AP-NL-DANS-implementation-guide.md#Catalog))
 
-> [!WARNING]
-> WORKING HERE
-> TODO:  decide if to include DataService/Catalog ??
 
+> [!WARNING]> WORKING on Catalog
 
 
 
