@@ -17,7 +17,7 @@
 |-------------|------------|-------------------|----------------------------|--------------|
 | 0.1         | 2025-04-08 | Andre Castro      | 1<sup>st</sup> draft       | N/A          |
 | 0.1.1       | 2025-06-03 | Ricarda Braukmann | Initial feedback on draft  |              |
-| 0.2.0       | 2026-02-05 | Andre Castro      | Requirements               |              |
+| 0.2.0       | 2026-02-05 | Andre Castro      | MOSCOW Requirements               |              |
 
 
 # Context
@@ -72,37 +72,19 @@ compliant.**
 
 ## Data Portals using DCAT-AP
 
-Nationaal Georegister [Example dataset 9ffddf33-8ae5-423f-b275-6bc2580b83e6](https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/9ffddf33-8ae5-423f-b275-6bc2580b83e6) (see [dcat-ap metadata record](https://www.nationaalgeoregister.nl/geonetwork/srv/api/records/9ffddf33-8ae5-423f-b275-6bc2580b83e6/formatters/dcat-ap-nl-3?output=xml))
+data.europa.eu (<https://data.europa.eu/>)
+- [Example dataset subventions-declic-energie](https://data.europa.eu/data/datasets/https-data-seineouest-fr-explore-dataset-subventions-declic-energie-?locale=en) see [dcat-ap metadata record](https://data.europa.eu/api/hub/repo/datasets/https-data-seineouest-fr-explore-dataset-subventions-declic-energie-.ttl?useNormalizedId=true&locale=en)
+![data.europa.eu datasets](img/dataEuropeEU.png)
+
+Nationaal Georegister (<https://www.nationaalgeoregister.nl>) 
+- [Example dataset 9ffddf33-8ae5-423f-b275-6bc2580b83e6](https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/9ffddf33-8ae5-423f-b275-6bc2580b83e6) (see [dcat-ap metadata record](https://www.nationaalgeoregister.nl/geonetwork/srv/api/records/9ffddf33-8ae5-423f-b275-6bc2580b83e6/formatters/dcat-ap-nl-3?output=xml))
 ![Nationaal Georegister dataset screenshots](img/NGR.png)
+
 
 
 # Goal
 
 The goal of this deliverable is to **customize and deploy** the [DCAT-AP Dataverse metadata exporter](https://github.com/gdcc/exporter-dcat3), in order to enable **Dataset metadata exports**, **complient with DCAT-AP-NL (3.0)**, in both **ODISSEI Portal** and **Data Station SSH**.
-
-<!--        TODO:REVIEW
-
-The  exporter shall be able to represent the
-mandatory and recommended properties; use of recommended controlled
-terms from specified controlled vocabularies; and represent
-complementary class instances, such as dcat:Distribution for expressing
-the files in the dataset, foaf:Agent for representing people and
-organizations and dcat:DataService to represent the service that gives
-access to the data.
-
-An examples of a dataset's metadata represented in DCAT-AP can be found
-in
-
-- Anon, 2026. EU Competition: Antitrust and Cartel case publications.
-  Available at:
-  <http://data.europa.eu/88u/dataset/18489cb7-bce7-4d44-a138-795b390d2109~~1>
-  \[Accessed February 5, 2026\].
-
-- [Metadata in DCAT-AP
-  (ttl)](https://data.europa.eu/api/hub/repo/datasets/18489cb7-bce7-4d44-a138-795b390d2109~~1.ttl?useNormalizedId=true&locale=en)
-
-<img src="media/image1.png" style="width:4.6875in;height:4.90764in" />
--->
 
 
 # Requirements
@@ -185,7 +167,7 @@ MAY be provided.*
   - dcat:landingPage (0..n) URL "The web page that provides access to the dataset and provides additional information about the dataset. This is the original web page of the data owner."
 
 - COULD include the following dcat:Dataset recommended properties [DCAT-AP-NL]
-  - dcat:keyword  (0..n)  Note that dcat:keyword is data property, hence its values have to be literals, and not URIs (such as the terms in Getty AAT, ELSST, etc). 
+  - dcat:keyword  (0..n)  Note that dcat:keyword is data property, hence its values have to be literals, and not URIs (such as the terms in Getty AAT, ELSST, etc).
 
 - COULD include "Keyword Getty AAT" and "Keyword ELSST" values' URIs in the dcat:theme property 
 
@@ -206,6 +188,7 @@ MAY be provided.*
       - property: spdx:checksumValue
 
 - MUST include one supportive entity vcard:Kind (value of dcat:contactPoint) to describe the contact information where end users can send questions about the dataset. (see implementation examples in [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind))
+  - MUST include its own URI
   - MUST include class vcard:Organization 
   - MUST include vcard:fn (formatted name)
   - MUST include vcard:hasEmail
@@ -228,41 +211,16 @@ MAY be provided.*
 > [!IMPORTANT]
 > In the ODISSEI Portal each dataset should have as publisher the dataset holder (ie. publisher = LISS), however the portal classifies all datasets with `publisher = ODISSEI Portal`, which is an incorrect statement (see bug-repoer [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369)). Until bug is fixed, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
 
-- SHOULD include an instance of dcat:Catalog, in each export, to represent the data-repository/data-portal (DS SSH or ODP), and establish the relation *this catalog (ODP) has dataset* via dcat:Catalog dcat:dataset, towards dcat:Dataset instance. (see [DCAT-AP-NL-DANS-implementation-guide.md#Catalog](DCAT-AP-NL-DANS-implementation-guide.md#Catalog))
+- SHOULD use URIs instead of blank nodes for resources that can be reused in multiple descriptions ie. vcard:Kind (value of dcat:contactPoint), foaf:Agent (value of dcat:publisher), dcat:Catalog. 
+> As the use of blank nodes is discouraged for resources that can be reused in multiple descriptions, a URI needs to be available for the publisher. In some environments, a central URI set is available or in the process of being set up.
+Source: https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-implementation-guidelines/release-10
 
 
-> [!WARNING]> WORKING on Catalog
-
-
-
+- COULD include an instance of dcat:Catalog, in each export, to represent the data-repository/data-portal (DS SSH or ODP), and establish the relation *this catalog (ODP) has dataset* via dcat:Catalog dcat:dataset, towards dcat:Dataset instance. (see [DCAT-AP-NL-DANS-implementation-guide.md#Catalog](DCAT-AP-NL-DANS-implementation-guide.md#Catalog)). Although introducting a dcat:Catalog node will bring some context to where the dataset is hosted/indexed, this node is not included in many DCAT-AP dataset export examples (ie. <https://data.europa.eu/>, <https://www.nationaalgeoregister.nl/>).
 
 - SHOULD allow OAI-PMH harvesting in XML RDF encoding, in Data Station SSH
 
 - COULD allow OAI-PMH harvesting in XML RDF encoding, in ODISSEI Portal. (Conceptually this is discouraged, as the ODP is an data aggregator and not a data publisher. We sould avoid the situation where datasets are harvested twice, from both the data provider and the ODP, which might lead to 2 duplicated dataset records exisiting the harvesting aggregator)
-
-
-- The export MUST include instances of dcat:Distribution to describe the
-  dataset files
-
-- The export SHOULD include an instance of dcat:DataService describing
-  the host data repository
-
-
-- Each class instance in the export SHOULD include property:value pairs
-  for each of their recommended properties, according to DCAT-AP-NL
-
-- MUST
-
-- SHOULD
-
-- COULD
-
-- WONT
-
-
-
-
-
 
 
 # Links and References

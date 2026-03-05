@@ -1,5 +1,8 @@
 # Dataset Requirements Documentation 
 
+[SEMIC DCAT-AP implementation guidelies](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-implementation-guidelines
+) 
+
 Dataset documentation:
 * https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Dataset
 * https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset
@@ -460,3 +463,5 @@ Other URIs from other controlled vocabularies can be used. Options for this are
 Class documentation:
 * https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#catalog-dcat-catalog
 * https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue
+
+> [!WARNING]> TODO: work on Catalog implementation guideline
