@@ -1,5 +1,9 @@
 # Deliverable 2026-D06 DCAT-AP-NL metadata exported for Dataverse
 
+This document is a conversions of https://github.com/Dans-labs/dcat-ap-requirements-analysis/blob/main/DCAT-AP-NL-DANS-reqs.md
+and replaces [Deliverable-2026-D08-DCAT-AP](https://knaw.sharepoint.com/:w:/r/sites/msteams_d7e185/Gedeelde%20documenten/General/Deliverables/2025/2025-D08%20DCAT-AP/Deliverable-2026-D08-DCAT-AP.docx?d=we0c9073c621a48f68c9d98f991f9a053&csf=1&web=1&e=khClOO)
+
+
 # Document Control
 
 | **Title**            | Deliverable 2025-D01 - DCAT-AP-NL metadata exported for Dataverse |
