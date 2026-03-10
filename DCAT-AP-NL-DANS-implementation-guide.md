@@ -553,7 +553,7 @@ A description of an endpoint can be expressed in a machine-readable form, such a
         dct:description           "REST API providing access to dataset metadata and services."@en;
           dct:identifier            "https://portal.odissei.nl/api/";
         dct:license               <https://creativecommons.org/publicdomain/zero/1.0/>;
-          dct:publisher             [] ;
+        dct:publisher             [] ;
         dct:title                 "Dataverse API"@en;
           dcat:contactPoint         [ rdf:type        vcard:Kind;
                                     vcard:fn        "Data Archiving Networked Services (DANS)"@en;
@@ -562,7 +562,6 @@ A description of an endpoint can be expressed in a machine-readable form, such a
                                     ];
         dcat:endpointDescription  <https://guides.dataverse.org/en/latest/api/native-api.html>;
         dcat:endpointURL          <https://portal.odissei.nl/api/>;
-          dcat:keyword              "API,Dataverse"@en;
           dcat:theme                <http://publications.europa.eu/resource/authority/data-theme/TECH> .
 ```
 
