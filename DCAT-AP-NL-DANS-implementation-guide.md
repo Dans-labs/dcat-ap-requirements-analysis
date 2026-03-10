@@ -480,15 +480,17 @@ Class documentation:
 * dcat:dataset
 
 
-Example dcat:Catalog instance for ODP
+**Example dcat:Catalog instance for ODP**
 
+Note:
+- ODISSEI Consortium ROR is https://ror.org/03m8
+- DANS ROR is https://ror.org/008pnp284
 
-```
-<https://portal.odissei.nl/>
+```<https://portal.odissei.nl/>
         rdf:type           dcat:Catalog;
-        dct:creator        <https://ror.org/008pnp284>;
-        dct:description    "This section of the Portal includes metadata from the social science datasets available in the DANS Data Station Social Sciences and Humanities. More information is available at: https://dans.knaw.nl/en/data-stations/social-sciences-and-humanities/"@en;
-        dct:publisher      <https://ror.org/008pnp284>;
+        dct:creator        <https://ror.org/03m8v6t10>;
+        dct:description    "The ODISSEI Portal combines metadata from a wide variety of social sciences research data repositories into a single interface, allowing for advanced semantic queries to support findability, and facilitate data access."@en;
+        dct:publisher      <https://ror.org/03m8v6t10>;
         dct:title          "DANS"@en;
         dcat:contactPoint  [ rdf:type                 vcard:Kind;
                              dct:identifier           <https://ror.org/03m8v6t10>;
@@ -497,6 +499,25 @@ Example dcat:Catalog instance for ODP
                              vcard:hasURL             <https://odissei-data.nl/>;
                              vcard:organization-name  "ODISSEI"@en
                            ];
-        dcat:dataset       <https://doi.org/10.5072/FK2/BI9FDF> .
+        dcat:dataset       <https://doi.org/FOO/BAR> .
 ```
 
+**Example dcat:Catalog instance for Data Station SSH**
+```
+
+<https://ssh.datastations.nl/>
+        rdf:type           dcat:Catalog;
+        dct:creator        <https://ror.org/008pnp284>;
+        dct:description    "DANS Data Station Social Sciences and Humanities allows you to deposit and search for data within the field of SSH."@en;
+        dct:publisher      <https://ror.org/008pnp284>;
+        dct:title          "DANS Data Station Social Sciences and Humanities"@en;
+        dcat:contactPoint [
+            a vcard:Organization ;
+            vcard:fn "Data Archiving Networked Services (DANS)";
+            vcard:hasEmail <mailto:"info@dans.knaw.nl"> ;
+            vcard:hasURL "https://dans.knaw.nl/" ;
+            vcard:organization-name "DANS" ;
+            dct:identifier <https://ror.org/008pnp284> .
+            ] ; 
+        dcat:dataset       <https://doi.org/BAR/FOO> .
+```
