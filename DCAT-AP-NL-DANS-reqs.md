@@ -107,9 +107,9 @@ documentation](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#provider-requir
 *In order to conform to this Application Profile, an application that
 provides metadata MUST:*
 
-- <s>*Provide a description of the Catalogue, including at least the
+- *Provide a description of the Catalogue, including at least the
   mandatory properties specified for the class
-  [Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue).*</s>
+  [Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue).*
 
 - *Provide descriptions of **Datasets** in the Catalogue, including at
   least the mandatory properties for the class
@@ -119,10 +119,10 @@ provides metadata MUST:*
   Catalogue, including at least the mandatory properties for the class
   [Distribution](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Distribution).*
 
-- <s>*Provide descriptions of Data Services, if any, of Datasets in the
+- *Provide descriptions of Data Services, if any, of Datasets in the
   Catalogue, including at least the mandatory properties for the class
   [Data
-  Service](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#DataService).*</s>
+  Service](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#DataService).*
 
 - *Provide descriptions of all **organisations** involved in the
   descriptions of Catalogue and Datasets, including at least the
@@ -215,12 +215,15 @@ MAY be provided.*
 > [!IMPORTANT]
 > In the ODISSEI Portal each dataset should have as publisher the dataset holder (ie. publisher = LISS), however the portal classifies all datasets with `publisher = ODISSEI Portal`, which is an incorrect statement (see bug-repoer [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369)). Until bug is fixed, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
 
-- SHOULD use URIs instead of blank nodes for resources that can be reused in multiple descriptions ie. vcard:Kind (value of dcat:contactPoint), foaf:Agent (value of dcat:publisher), dcat:Catalog. 
+- SHOULD use URIs instead of blank nodes for resources that can be reused in multiple descriptions ie. vcard:Kind (value of dcat:contactPoint), foaf:Agent (value of dcat:publisher), dcat:Catalog.
+
 > As the use of blank nodes is discouraged for resources that can be reused in multiple descriptions, a URI needs to be available for the publisher. In some environments, a central URI set is available or in the process of being set up.
 Source: https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-implementation-guidelines/release-10
 
 
 - COULD include an instance of dcat:Catalog, in each export, to represent the data-repository/data-portal (DS SSH or ODP), and establish the relation *this catalog (ODP) has dataset* via dcat:Catalog dcat:dataset, towards dcat:Dataset instance. (see [DCAT-AP-NL-DANS-implementation-guide.md#Catalog](DCAT-AP-NL-DANS-implementation-guide.md#Catalog)). Although introducting a dcat:Catalog node will bring some context to where the dataset is hosted/indexed, this node is not included in many DCAT-AP dataset export examples (ie. <https://data.europa.eu/>, <https://www.nationaalgeoregister.nl/>).
+
+- COULD include an instance of dcat:DataService, in each export, to represent "the operations that provides access to one or more datasets or data processing functions. Source: https://www.w3.org/TR/vocab-dcat-3/#Class:Data_Service
 
 - SHOULD allow OAI-PMH harvesting in XML RDF encoding, in Data Station SSH
 

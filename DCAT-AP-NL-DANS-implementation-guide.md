@@ -456,7 +456,7 @@ Other URIs from other controlled vocabularies can be used. Options for this are
             
         ```
 
-## Catalog
+# Catalog
 
 *A catalogue or repository that hosts the Datasets or Data Services being described.*
 
@@ -464,4 +464,39 @@ Class documentation:
 * https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#catalog-dcat-catalog
 * https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue
 
-> [!WARNING]> TODO: work on Catalog implementation guideline
+
+## Catalog Mandatory Properties
+
+
+**DCAT-AP mandatory properties of dcat:Catalog:**
+
+* dct:description (1)
+* dct:title (1)
+* dct:publisher (1)
+
+**DCAT-AP-NL mandatory properties of dcat:Catalog:**
+
+* dcat:contactPoint
+* dcat:dataset
+
+
+Example dcat:Catalog instance for ODP
+
+
+```
+<https://portal.odissei.nl/>
+        rdf:type           dcat:Catalog;
+        dct:creator        <https://ror.org/008pnp284>;
+        dct:description    "This section of the Portal includes metadata from the social science datasets available in the DANS Data Station Social Sciences and Humanities. More information is available at: https://dans.knaw.nl/en/data-stations/social-sciences-and-humanities/"@en;
+        dct:publisher      <https://ror.org/008pnp284>;
+        dct:title          "DANS"@en;
+        dcat:contactPoint  [ rdf:type                 vcard:Kind;
+                             dct:identifier           <https://ror.org/03m8v6t10>;
+                             vcard:fn                 "Open Data Infrastructure for Social Science and Economic Innovations"@en;
+                             vcard:hasEmail           <mailto:portal@odissei.nl>;
+                             vcard:hasURL             <https://odissei-data.nl/>;
+                             vcard:organization-name  "ODISSEI"@en
+                           ];
+        dcat:dataset       <https://doi.org/10.5072/FK2/BI9FDF> .
+```
+
