@@ -575,19 +575,3 @@ A description of an endpoint can be expressed in a machine-readable form, such a
   * dcat:theme
   * dcat:keyword
 
-
-
-## DataService Mandatory Properties
-
-**DCAT-AP mandatory properties of dcat:Catalog:**
-
-* dct:description (1)
-* dct:title (1)
-* dct:publisher (1)
-
-**DCAT-AP-NL mandatory properties of dcat:Catalog:**
-
-* dcat:contactPoint
-* dcat:dataset
-
-**Example dcat:Catalog instance for ODP**

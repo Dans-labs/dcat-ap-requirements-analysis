@@ -107,29 +107,29 @@ documentation](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#provider-requir
 *In order to conform to this Application Profile, an application that
 provides metadata MUST:*
 
-- *Provide a description of the Catalogue, including at least the
+- REQ-SEMIC-DCAT-AP-01: *Provide a description of the Catalogue, including at least the
   mandatory properties specified for the class
   [Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue).*
 
-- *Provide descriptions of **Datasets** in the Catalogue, including at
+- REQ-SEMIC-DCAT-AP-02: *Provide descriptions of **Datasets** in the Catalogue, including at
   least the mandatory properties for the class
   [Dataset](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Dataset).*
 
-- *Provide descriptions of **Distributions**, if any, of Datasets in the
+- REQ-SEMIC-DCAT-AP-03: *Provide descriptions of **Distributions**, if any, of Datasets in the
   Catalogue, including at least the mandatory properties for the class
   [Distribution](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Distribution).*
 
-- *Provide descriptions of Data Services, if any, of Datasets in the
+- REQ-SEMIC-DCAT-AP-04: *Provide descriptions of Data Services, if any, of Datasets in the
   Catalogue, including at least the mandatory properties for the class
   [Data
   Service](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#DataService).*
 
-- *Provide descriptions of all **organisations** involved in the
+- REQ-SEMIC-DCAT-AP-05: *Provide descriptions of all **organisations** involved in the
   descriptions of Catalogue and Datasets, including at least the
   mandatory properties for the class
   [Agent](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Agent).*
 
-- *Apply the publication requirements for the controlled vocabularies as
+- REQ-SEMIC-DCAT-AP-06: *Apply the publication requirements for the controlled vocabularies as
   mentioned in section [10. Controlled
   Vocabularies](https://semiceu.github.io/DCAT-AP/releases/3.0.1/#controlled-vocs).*
 
@@ -147,15 +147,16 @@ MAY be provided.*
 > [!IMPORTANT]
 > Use [DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md) for complementary information to the requirements.
 
-- MUST export metadata, in conformance with DCAT-AP-NL, from datasets indexed in ODISSEI Portal (ODP).[^3]
 
-- MUST export metadata, in conformance with DCAT-AP-NL, from Datasets hosted in Data Station SSH.
+- REQ-SSHOC-DCAT-AP-01: MUST export metadata, in conformance with DCAT-AP-NL, from datasets indexed in ODISSEI Portal (ODP).[^3]
 
-- MUST export metadata in turtle (.ttl) RDF encoding
+- REQ-SSHOC-DCAT-AP-02: MUST export metadata, in conformance with DCAT-AP-NL, from Datasets hosted in Data Station SSH.
 
-- MUST focus the export in the dcat:Dataset instance and supportive entities
+- REQ-SSHOC-DCAT-AP-03: MUST export metadata in turtle (.ttl) RDF encoding
 
-- MUST include the following dcat:Dataset mandatory properties [DCAT-AP-NL] and for its object properties, the corresponding *target* class instances or URIs:
+- REQ-SSHOC-DCAT-AP-04: MUST focus the export in the dcat:Dataset instance and supportive entities
+
+- REQ-SSHOC-DCAT-AP-05: MUST include the following dcat:Dataset mandatory properties [DCAT-AP-NL] and for its object properties, the corresponding *target* class instances or URIs:
   - dct:title (1..1)
   - dct:identifier (1..1)
   - dct:description (1..1)
@@ -166,16 +167,16 @@ MAY be provided.*
   - dct:publisher (1..1) target class foaf:Agent (see [DCAT-AP-NL-DANS-implementation-guide.md#property-dctpublisher-target-class-foafagent](DCAT-AP-NL-DANS-implementation-guide.md#property-dctpublisher-target-class-foafagent))
   - dcat:theme (1..n) target class skos:Concept from http://publications.europa.eu/resource/authority/data-theme Suggestion for SSH DS & ODP [SOCI](http://publications.europa.eu/resource/authority/data-theme/SOCI) Population and society (see [DCAT-AP-NL-DANS-implementation-guide.md#dataset-data-theme-controlled-values](DCAT-AP-NL-DANS-implementation-guide.md#dataset-data-theme-controlled-values))
 
-- MUST include the following dcat:Dataset recommended properties [DCAT-AP-NL]
+- REQ-SSHOC-DCAT-AP-06: MUST include the following dcat:Dataset recommended properties [DCAT-AP-NL]
   - dct:conformsTo (0..1)  Value: "DCAT-AP-NL30"; Desc: *An established standard to which the described resource conforms*.
   - dcat:landingPage (0..n) URL "The web page that provides access to the dataset and provides additional information about the dataset. This is the original web page of the data owner."
 
-- COULD include the following dcat:Dataset recommended properties [DCAT-AP-NL]
+- REQ-SSHOC-DCAT-AP-07: COULD include the following dcat:Dataset recommended properties [DCAT-AP-NL]
   - dcat:keyword  (0..n)  Note that dcat:keyword is data property, hence its values have to be literals, and not URIs (such as the terms in Getty AAT, ELSST, etc).
 
-- COULD include "Keyword Getty AAT" and "Keyword ELSST" values' URIs in the dcat:theme property 
+- REQ-SSHOC-DCAT-AP-08: COULD include "Keyword Getty AAT" and "Keyword ELSST" values' URIs in the dcat:theme property 
 
-- MUST include the supportive entity dcat:Distribution (value of dcat:Dataset dcat:distribution) to represent data files, with fellowing properties: (see implementation examples in [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution))
+- REQ-SSHOC-DCAT-AP-09: MUST include the supportive entity dcat:Distribution (value of dcat:Dataset dcat:distribution) to represent data files, with fellowing properties: (see implementation examples in [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatdistribution-target-class-dcatdistribution))
   - MUST include dcat:accessURL [DCAT-AP] (1..1) ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
   - WONT include <s>dct:license [DCAT-AP-NL]</s> - WONT be implemented since Dataverse does not allow for license at file-level
   - MUST include dct:rights (0..1) - allowed values:
@@ -191,7 +192,7 @@ MAY be provided.*
       - property: spdx:algorithm = SHA1  (used by Dataverse)
       - property: spdx:checksumValue
 
-- MUST include one supportive entity vcard:Kind (value of dcat:contactPoint) to describe the contact information where end users can send questions about the dataset. (see implementation examples in [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind))
+- REQ-SSHOC-DCAT-AP-10: MUST include one supportive entity vcard:Kind (value of dcat:contactPoint) to describe the contact information where end users can send questions about the dataset. (see implementation examples in [DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind](DCAT-AP-NL-DANS-implementation-guide.md#property-dcatcontactpoint-target-class-vcardkind))
   - MUST include its own URI
   - MUST include class vcard:Organization 
   - MUST include vcard:fn (formatted name)
@@ -200,7 +201,7 @@ MAY be provided.*
   - SHOULD include vcard:organization-name 
   - SHOULD include dct:identifier (organization ROR)
 
-- MUST include the supportive entity foaf:Agent (value of dcat:creator, dcat:publisher) to describe the creator and publisher of the dataset.
+- REQ-SSHOC-DCAT-AP-11: MUST include the supportive entity foaf:Agent (value of dcat:creator, dcat:publisher) to describe the creator and publisher of the dataset.
   - For dcat:creator (see [DCAT-AP-NL-DANS-implementation-guide.md#property-dctcreator--target-class-foafagent](DCAT-AP-NL-DANS-implementation-guide.md#property-dctcreator--target-class-foafagent))
     - MUST include a node, instance of class foaf:Agent, for each creator
     - MUST include foaf:name
@@ -215,19 +216,19 @@ MAY be provided.*
 > [!IMPORTANT]
 > In the ODISSEI Portal each dataset should have as publisher the dataset holder (ie. publisher = LISS), however the portal classifies all datasets with `publisher = ODISSEI Portal`, which is an incorrect statement (see bug-repoer [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369)). Until bug is fixed, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
 
-- SHOULD use URIs instead of blank nodes for resources that can be reused in multiple descriptions ie. vcard:Kind (value of dcat:contactPoint), foaf:Agent (value of dcat:publisher), dcat:Catalog.
+- REQ-SSHOC-DCAT-AP-12: SHOULD use URIs instead of blank nodes for resources that can be reused in multiple descriptions ie. vcard:Kind (value of dcat:contactPoint), foaf:Agent (value of dcat:publisher), dcat:Catalog.
 
 > As the use of blank nodes is discouraged for resources that can be reused in multiple descriptions, a URI needs to be available for the publisher. In some environments, a central URI set is available or in the process of being set up.
 Source: https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-implementation-guidelines/release-10
 
 
-- COULD include an instance of dcat:Catalog, in each export, to represent the data-repository/data-portal (DS SSH or ODP), and establish the relation *this catalog (ODP) has dataset* via dcat:Catalog dcat:dataset, towards dcat:Dataset instance. (see [DCAT-AP-NL-DANS-implementation-guide.md#Catalog](DCAT-AP-NL-DANS-implementation-guide.md#Catalog)). Although introducting a dcat:Catalog node will bring some context to where the dataset is hosted/indexed, this node is not included in many DCAT-AP dataset export examples (ie. <https://data.europa.eu/>, <https://www.nationaalgeoregister.nl/>).
+- REQ-SSHOC-DCAT-AP-13: COULD include an instance of dcat:Catalog, in each export, to represent the data-repository/data-portal (DS SSH or ODP), and establish the relation *this catalog (ODP) has dataset* via dcat:Catalog dcat:dataset, towards dcat:Dataset instance. (see [DCAT-AP-NL-DANS-implementation-guide.md#Catalog](DCAT-AP-NL-DANS-implementation-guide.md#Catalog)). Although introducting a dcat:Catalog node will bring some context to where the dataset is hosted/indexed, this node is not included in many DCAT-AP dataset export examples (ie. <https://data.europa.eu/>, <https://www.nationaalgeoregister.nl/>).
 
-- COULD include an instance of dcat:DataService, in each export, to represent "the operations that provides access to one or more datasets or data processing functions. Source: https://www.w3.org/TR/vocab-dcat-3/#Class:Data_Service
+- REQ-SSHOC-DCAT-AP-14: COULD include instances of dcat:DataService, in each export, to represent "the operations that provides access to one or more datasets or data processing functions. Source: <https://www.w3.org/TR/vocab-dcat-3/#Class:Data_Service>. Note that DCAT-AP-NL puts quite a lot of mandatory properties, on dcat:DataService, making it difficult to comply accuratly
 
-- SHOULD allow OAI-PMH harvesting in XML RDF encoding, in Data Station SSH
+- REQ-SSHOC-DCAT-AP-15: SHOULD allow OAI-PMH harvesting in XML RDF encoding, in Data Station SSH
 
-- COULD allow OAI-PMH harvesting in XML RDF encoding, in ODISSEI Portal. (Conceptually this is discouraged, as the ODP is an data aggregator and not a data publisher. We sould avoid the situation where datasets are harvested twice, from both the data provider and the ODP, which might lead to 2 duplicated dataset records exisiting the harvesting aggregator)
+- REQ-SSHOC-DCAT-AP-16: COULD allow OAI-PMH harvesting in XML RDF encoding, in ODISSEI Portal. (Conceptually this is discouraged, as the ODP is an data aggregator and not a data publisher. We sould avoid the situation where datasets are harvested twice, from both the data provider and the ODP, which might lead to 2 duplicated dataset records exisiting the harvesting aggregator)
 
 
 # Links and References
