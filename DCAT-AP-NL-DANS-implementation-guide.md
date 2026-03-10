@@ -467,7 +467,6 @@ Class documentation:
 
 ## Catalog Mandatory Properties
 
-
 **DCAT-AP mandatory properties of dcat:Catalog:**
 
 * dct:description (1)
@@ -479,10 +478,10 @@ Class documentation:
 * dcat:contactPoint
 * dcat:dataset
 
-
 **Example dcat:Catalog instance for ODP**
 
 Note:
+
 - ODISSEI Consortium ROR is https://ror.org/03m8
 - DANS ROR is https://ror.org/008pnp284
 
@@ -502,10 +501,9 @@ Note:
         dcat:dataset       <https://doi.org/FOO/BAR> .
 ```
 
-**Example dcat:Catalog instance for Data Station SSH**
-```
+**Example dcat:Catalog instance for Data Station SSH:**
 
-<https://ssh.datastations.nl/>
+```<https://ssh.datastations.nl/>
         rdf:type           dcat:Catalog;
         dct:creator        <https://ror.org/008pnp284>;
         dct:description    "DANS Data Station Social Sciences and Humanities allows you to deposit and search for data within the field of SSH."@en;
@@ -521,3 +519,76 @@ Note:
             ] ; 
         dcat:dataset       <https://doi.org/BAR/FOO> .
 ```
+
+# DataService
+
+dcat:DataService represent "a computer service where data is requested on the basis of specifications in a request. The data that meet the specified specification will be returned as a response. Web services such as REST/JSON, WMS or XML interfaces are examples of dcat:DataService" Source: https://geonovum.github.io/DCAT-AP-NL30/#dataservice-dcat-dataservice
+
+**DCAT-AP mandatory properties of dcat:Catalog:**
+
+* dcat:endpointURL (1..)
+* dct:title (1..1)
+
+**DCAT-AP-NL mandatory properties of dcat:Catalog:**
+
+* dct:accessRights (1..1) allowed values:
+  * `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>`
+  * `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>`
+* dcat:contactPoint (1..1)
+* dct:description (1..n)
+* dcat:endpointDescription ("This property describes the specific details of the Data Service, such as the operations available to this Data Service through the end-point instances, including their operation and parameters
+A description of an endpoint can be expressed in a machine-readable form, such as a [OpenAPI] (Swagger)" Source: https://geonovum.github.io/DCAT-AP-NL30/#dataservice-endpoint-description )
+* dcat:endpointURL (1..1)
+* dct:identifier (1..1)
+* dct:license (1..1)
+* dct:publisher (1..1)
+* dcat:theme (1..1)
+
+**Example dcat:Catalog instance for ODP**
+
+```
+<https://portal.odissei.nl/dcat-ap/native-api> 
+        rdf:type                  rdfs:Resource , dcat:DataService;
+        dct:accessRights          <http://publications.europa.eu/resource/authority/access-right/PUBLIC>;
+        dct:description           "REST API providing access to dataset metadata and services."@en;
+          dct:identifier            "https://portal.odissei.nl/api/";
+        dct:license               <https://creativecommons.org/publicdomain/zero/1.0/>;
+          dct:publisher             [] ;
+        dct:title                 "Dataverse API"@en;
+          dcat:contactPoint         [ rdf:type        vcard:Kind;
+                                    vcard:fn        "Data Archiving Networked Services (DANS)"@en;
+                                    vcard:hasEmail  <mailto:info@dans.knaw.nl>;
+                                    vcard:hasURL    <https://dans.knaw.nl/en/contact/>
+                                    ];
+        dcat:endpointDescription  <https://guides.dataverse.org/en/latest/api/native-api.html>;
+        dcat:endpointURL          <https://portal.odissei.nl/api/>;
+          dcat:keyword              "API,Dataverse"@en;
+          dcat:theme                <http://publications.europa.eu/resource/authority/data-theme/TECH> .
+```
+
+@andrecastro0o Points to discuss & decide:
+
+* Dataverse divides its API in different parts. Shouldn't there be a DataService for each one ![img/DataverseAPIs.png](img/DataverseAPIs.png)
+* changed DataService URI https://portal.odissei.nl/dcat-ap/native-api in order to avoid a loop with dcat:endpointURL property. An named-entity cannot be both itself and a value of one of its properties.
+* dcat:contactPoint value - instead of using several blank notes that say the same in intities DataService, Catalog and Dataset, we should have 1 named node and point all dcat:contactPoint properties to it
+* skeptical of certain (DCAT-AP-NL) mandatory props to describe a DataService (see [DCAT-AP-NL30/issues/249](https://github.com/Geonovum/DCAT-AP-NL30/issues/249)), namely
+  * dct:identifier
+  * dcat:theme
+  * dcat:keyword
+
+
+
+## DataService Mandatory Properties
+
+**DCAT-AP mandatory properties of dcat:Catalog:**
+
+* dct:description (1)
+* dct:title (1)
+* dct:publisher (1)
+
+**DCAT-AP-NL mandatory properties of dcat:Catalog:**
+
+* dcat:contactPoint
+* dcat:dataset
+
+**Example dcat:Catalog instance for ODP**
