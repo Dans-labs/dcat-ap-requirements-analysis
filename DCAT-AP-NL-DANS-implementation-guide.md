@@ -83,9 +83,13 @@ Some of the properties (object properties) require its value to be another insta
 
 **In [DCAT-AP-NL dct:accessRights](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-access-rights) is a mandatory Dataset object property.**
 The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named `Authority List](http://publications.europa.eu/resource/authority/access-right). 
-Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted; non-public.
+Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public.
 
-As all of DANS datasets are public, **restriction only happens at the Distribution level** and not at the Dataset level. Hence, the simple and correct choice is to make the statement: this dataset has `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`, for all of the datasets.
+The recommendation is to follow Dataverse + Datacite interpretation that **a Dataset with 1 restricted file has dct:accessRights=RESTRICTED** in other words:
+
+* `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `files[].restricted": false`
+* `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `files[].restricted": true`
+
 
 ### supplement dct:accessRights with dct:license
 
@@ -124,27 +128,25 @@ In essence this property's value is a node with the email address and a bit more
 **contactPoint for the ODISSEI (Portal)**
 
 ```json
-   dcat:contactPoint [
-     a vcard:Organization ;
-     vcard:fn "Open Data Infrastructure for Social Science and Economic Innovations"; # formated name
-     vcard:hasEmail <mailto:"portal@odissei.nl"> ;
-     vcard:hasURL "https://odissei-data.nl/" ;
-     vcard:organization-name "ODISSEI" ;
-     dct:identifier <https://ror.org/03m8v6t10> .
-     ] ; 
+<https://odissei-data.nl/#contact>
+        rdf:type                 vcard:Organization;
+        dct:identifier           <https://ror.org/03m8v6t10>;
+        vcard:fn                 "Open Data Infrastructure for Social Science and Economic Innovations"@en;
+        vcard:hasEmail           <mailto:portal@odissei.nl>;
+        vcard:hasURL             <https://odissei-data.nl/>;
+        vcard:organization-name  "ODISSEI" .
 ```
 
 **contactPoint for DANS  Data Stations**
 
 ```json
-dcat:contactPoint [
-    a vcard:Organization ;
-    vcard:fn "Data Archiving Networked Services (DANS)";
-    vcard:hasEmail <mailto:"info@dans.knaw.nl"> ;
-    vcard:hasURL "https://dans.knaw.nl/" ;
-    vcard:organization-name "DANS" ;
-    dct:identifier <https://ror.org/008pnp284> .
-    ] ; 
+<https://ssh.datastations.nl/#contact>
+        rdf:type                 vcard:Organization;
+        dct:identifier          <https://ror.org/008pnp284> ;
+        vcard:fn                 "Data Archiving Networked Services (DANS)";
+        vcard:hasEmail           <mailto:info@dans.knaw.nl">;
+        vcard:hasURL             <https://ssh.datastations.nl/>;
+        vcard:organization-name  "DANS" .
 ```
 Note: that dct:identifier was a personal addition.
 
@@ -266,12 +268,6 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
 
 * dcat:accessURL (DCAT-AP)  ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
 * dct:license (DCAT-AP-NL) - CANNOT be implement since Dataverse does not allow for license at file-level (Linda and Alessandra have been workinng on this)
-
-**Additional DANS properties**:
-
-* dct:accessRights - allowed values:
-  * `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `files[].restricted": false`
-  * `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `files[].restricted": true`
 
 **Interesting (optional) dcat:Distribution properties:**
 
@@ -484,6 +480,7 @@ Note:
 
 - ODISSEI Consortium ROR is https://ror.org/03m8
 - DANS ROR is https://ror.org/008pnp284
+
 
 ```<https://portal.odissei.nl/>
         rdf:type           dcat:Catalog;
