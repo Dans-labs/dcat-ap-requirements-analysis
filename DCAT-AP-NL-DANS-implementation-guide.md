@@ -85,8 +85,10 @@ Some of the properties (object properties) require its value to be another insta
 The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named `Authority List](http://publications.europa.eu/resource/authority/access-right). 
 Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public.
 
+The recommendation is to follow Dataverse + Datacite interpretation that **a Dataset with 1 restricted file has dct:accessRights=RESTRICTED** in other words:
 
-The recommendation is to follow Dataverse + Datacite interpretation that **a Dataset with 1 restricted file has dct:accessRights=RESTRICTED** 
+* `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `files[].restricted": false`
+* `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `files[].restricted": true`
 
 
 ### supplement dct:accessRights with dct:license
@@ -268,12 +270,6 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
 
 * dcat:accessURL (DCAT-AP)  ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
 * dct:license (DCAT-AP-NL) - CANNOT be implement since Dataverse does not allow for license at file-level (Linda and Alessandra have been workinng on this)
-
-**Additional DANS properties**:
-
-* dct:accessRights - allowed values:
-  * `<http://publications.europa.eu/resource/authority/access-right/PUBLIC>` WHEN `files[].restricted": false`
-  * `<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>` WHEN `files[].restricted": true`
 
 **Interesting (optional) dcat:Distribution properties:**
 
