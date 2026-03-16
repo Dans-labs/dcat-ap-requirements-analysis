@@ -83,9 +83,11 @@ Some of the properties (object properties) require its value to be another insta
 
 **In [DCAT-AP-NL dct:accessRights](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-access-rights) is a mandatory Dataset object property.**
 The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named `Authority List](http://publications.europa.eu/resource/authority/access-right). 
-Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted; non-public.
+Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public.
 
-As all of DANS datasets are public, **restriction only happens at the Distribution level** and not at the Dataset level. Hence, the simple and correct choice is to make the statement: this dataset has `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`, for all of the datasets.
+
+The recommendation is to follow Dataverse + Datacite interpretation that **a Dataset with 1 restricted file has dct:accessRights=RESTRICTED** 
+
 
 ### supplement dct:accessRights with dct:license
 
