@@ -275,8 +275,9 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
 * dct:issued (data prop) The date of formal issuance. Source: `files[].publicationDate`
 * dtc:title  (data prop). Source:`files[].label`
 * dcat:downloadURL.  Source: https://ssh.datastations.nl/api/access/datafile/ + `files[].dataFile.id`
-* dct:format file format of the Distribution. Source: `files[].dataFile.contentType` OR `files[].dataFile.friendlyType` 
-  * Note: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format key:values (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with dataverse values is best
+* dcat:mediaType - recommendation use values from [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) which map directly to Dataverse  `files[].dataFile.contentType`
+<!-- dct:format file format of the Distribution. Source: `files[].dataFile.contentType` OR `files[].dataFile.friendlyType` 
+  * Note: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format key:values (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with dataverse values is best-->
 <!-- * dcat:packageFormat "The format of the file in which one or more data files are grouped together" Range: [IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) **Value: `<https://www.iana.org/assignments/media-types/application/zip>`** -->
 
 * http://spdx.org/rdf/terms#checksum (object property) 
