@@ -137,15 +137,15 @@ In essence this property's value is a node with the email address and a bit more
         vcard:organization-name  "ODISSEI" .
 ```
 
-**contactPoint for DANS  Data Stations**
+**contactPoint for DANS (organization)**
 
 ```json
-<https://ssh.datastations.nl/#contact>
+<https://dans.knaw.nl/#contact>
         rdf:type                 vcard:Organization;
         dct:identifier          <https://ror.org/008pnp284> ;
         vcard:fn                 "Data Archiving Networked Services (DANS)";
         vcard:hasEmail           <mailto:info@dans.knaw.nl">;
-        vcard:hasURL             <https://ssh.datastations.nl/>;
+        vcard:hasURL             <https://dans.knaw.nl/>;
         vcard:organization-name  "DANS" .
 ```
 Note: that dct:identifier was a personal addition.
