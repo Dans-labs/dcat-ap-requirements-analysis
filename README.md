@@ -6,6 +6,8 @@
 
 * **[DCAT-AP-NL-DANS-reqs.md](DCAT-AP-NL-DANS-reqs.md)** - Technical Requirements
 * **[DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md)** - implementation guidelines
+* **[SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl)** - Dataset export tests with SHACL shapes
+  * Run: `shacl v --shapes DANS-shacl.ttl --data example-DANS-ssh.ttl`
 
 ### Jupyter Notebooks
 
