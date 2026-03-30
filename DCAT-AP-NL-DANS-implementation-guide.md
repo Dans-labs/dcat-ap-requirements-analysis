@@ -47,7 +47,7 @@ Below is the same list, with the ones to implement, in bold. And crossed the one
 
 * **http://www.w3.org/ns/dcat#keyword**  0..1   literal 	A keyword or tag describing the Dataset. 
     * ODISSEI Portal: use  Keyword ELSST URI (Enriched Metadata block)
-    * SSH DS: Use "Keyword Getty AAT" & "Keyword ELSST" URIs - Note: in the future all this might be migrated to the generic keyword field which will require changing the source location of the keyword  
+    * SSH DS: Use "Keyword Getty AAT" & "Keyword ELSST" labels - Note: in the future of DANS' dataverse, all these keywords might be migrated to the generic keyword field which will require changing the source location of the keyword  
 * **http://www.w3.org/ns/dcat#landingPage**    URL
 * <s>http://purl.org/dc/terms/conformsTo</s> 0..1 Literal An established standard to which the described resource conforms.
 * <s>http://purl.org/dc/terms/spatial</s> NA
@@ -82,8 +82,22 @@ Some of the properties (object properties) require its value to be another insta
 **Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`
 
 **In [DCAT-AP-NL dct:accessRights](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-access-rights) is a mandatory Dataset object property.**
-The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named `Authority List](http://publications.europa.eu/resource/authority/access-right). 
-Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public.
+The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right). 
+Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public. 
+
+And include also the following statements, since at the source these concepts are instances of `skos:Concept` and `euvoc:AccessRight`, however the property dct:accessRights has range dct:RightsStatement, so we need to indicate that those 2 concepts are instances of  dct:RightsStatement.
+
+```
+<http://publications.europa.eu/resource/authority/access-right/RESTRICTED>
+        rdf:type  dct:RightsStatement .
+<http://publications.europa.eu/resource/authority/access-right/PUBLIC>
+        rdf:type  dct:RightsStatement .
+```
+        
+
+
+
+
 
 The recommendation is to follow Dataverse + Datacite interpretation that **a Dataset with 1 restricted file has dct:accessRights=RESTRICTED** in other words:
 
@@ -137,15 +151,15 @@ In essence this property's value is a node with the email address and a bit more
         vcard:organization-name  "ODISSEI" .
 ```
 
-**contactPoint for DANS  Data Stations**
+**contactPoint for DANS (organization)**
 
 ```json
-<https://ssh.datastations.nl/#contact>
+<https://dans.knaw.nl/#contact>
         rdf:type                 vcard:Organization;
         dct:identifier          <https://ror.org/008pnp284> ;
         vcard:fn                 "Data Archiving Networked Services (DANS)";
         vcard:hasEmail           <mailto:info@dans.knaw.nl">;
-        vcard:hasURL             <https://ssh.datastations.nl/>;
+        vcard:hasURL             <https://dans.knaw.nl/>;
         vcard:organization-name  "DANS" .
 ```
 Note: that dct:identifier was a personal addition.
@@ -275,8 +289,9 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
 * dct:issued (data prop) The date of formal issuance. Source: `files[].publicationDate`
 * dtc:title  (data prop). Source:`files[].label`
 * dcat:downloadURL.  Source: https://ssh.datastations.nl/api/access/datafile/ + `files[].dataFile.id`
-* dct:format file format of the Distribution. Source: `files[].dataFile.contentType` OR `files[].dataFile.friendlyType` 
-  * Note: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format key:values (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with dataverse values is best
+* dcat:mediaType - recommendation use values from [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) which map directly to Dataverse  `files[].dataFile.contentType`
+<!-- dct:format file format of the Distribution. Source: `files[].dataFile.contentType` OR `files[].dataFile.friendlyType` 
+  * Note: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format key:values (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with dataverse values is best-->
 <!-- * dcat:packageFormat "The format of the file in which one or more data files are grouped together" Range: [IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) **Value: `<https://www.iana.org/assignments/media-types/application/zip>`** -->
 
 * http://spdx.org/rdf/terms#checksum (object property) 
@@ -412,12 +427,6 @@ The advised vocabulary to use is the "Data theme" http://publications.europa.eu/
 * [SOCI](http://publications.europa.eu/resource/authority/data-theme/SOCI) Population and society
 
 Other possible themes are [ECON](https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme/ECON) Economy and finance & [EDUC](https://op.europa.eu/web/eu-vocabularies/concept/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme/EDUC) Education, culture and sport, but these seem to be too specific and not matching the SSH DS and ODISSEI Portal domains. https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme contains more detailed info 
-
-Other URIs from other controlled vocabularies can be used. Options for this are
-* SSH DS/ODISSEI - Audience field: [NARCIS  Classification of Scientific Disciplines](https://vocabs.datastations.nl/NARCIS/en/) 
-* SSH DS -  CESSDA Topic Classification field [CESSDA Topic Classification](https://vocabularies.cessda.eu/vocabulary/TopicClassification?v=4.2#MediaCommunicationAndLanguage.LanguageAndLinguistics)
-* SSH DS -  Keyword ELSST field [ELSST Thesaurus](https://thesauri.cessda.eu/elsst) although ELSST scope is broader than data themes
-
 
 
 
