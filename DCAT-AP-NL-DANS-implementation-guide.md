@@ -285,7 +285,7 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
 
 <div style="border: 4px solid orange; padding: 10px; border-radius: 5px;">
 
-### property dcat:distribution target class dcat:Distribution 
+### property dcat:distribution target class dcat:Distribution
 
 * Definition: A physical embodiment of the Dataset in a particular format. 
 * conditional property: if there are files in dataset. Does not apply to the ODP
@@ -311,6 +311,17 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
   * Class: a <http://spdx.org/rdf/terms#Checksum>
   * http://spdx.org/rdf/terms#algorithm = SHA1  (used by Dataverse)
   * http://spdx.org/rdf/terms#checksumValue
+
+**Distribution access:**
+
+The recommendation is to use dcat:downloadURL for public downloadable resources, in addition to dcat:accessURL which describes the method how to get access, and licencing information that often some accessibility aspects contain.
+
+> dcat:accessURL SHOULD be used for the URL of a service or location that can provide access to this distribution, typically through a Web form, query or API call.
+> 
+> dcat:downloadURL is preferred for direct links to downloadable resources.
+> 
+> If the distribution(s) are accessible only through a landing page (i.e., direct download URLs are not known), then the landing page URL associated with the dcat:Dataset SHOULD be duplicated as access URL on a distribution (see 5.7 Dataset available only behind some Web page). [^4]
+
 
 
 **Future Distribution properties:**
@@ -601,3 +612,5 @@ A description of an endpoint can be expressed in a machine-readable form, such a
 [^2]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Rightsstatement
 
 [^3]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocabularies-to-be-used
+
+[^4]: https://www.w3.org/TR/vocab-dcat-3/#Property:distribution_access_url
