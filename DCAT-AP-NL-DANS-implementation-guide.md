@@ -88,15 +88,7 @@ And the target class of dct:accessRights, `dct:RightsStatement`, is defined as:
 
 > A statement about the intellectual property rights (IPR) held in or over a resource, a legal document giving official permission to do something with a resource, or a statement about access rights. [^2]
 
-There is also a *recommendation* to use controlled values from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right)(:PUBLIC, :RESTRICTED, :NON_PUBLIC), is recommended in order to stimulates interoperability, but is not a requirement. [^3]
-
-
-**Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`
-
-**In [DCAT-AP-NL dct:accessRights](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-access-rights) is a mandatory Dataset object property.**
-
-The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right). 
-Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public. 
+There is a *recommendation* to use controlled values from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right)(:PUBLIC, :RESTRICTED, :NON_PUBLIC), in order to stimulates interoperability, but is not a requirement. [^3] Non-the-less it seems relevant to use these URIs. **For Dataverses Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>` seems the most appropriate deafult value, since the restrictions are made at the file level and not Dataset level - which we will be able to express in dcat:Distribution entity (see [Section:property dcat:distribution target class dcat:Distribution](#property-dcat:distribution-target-class-dcat:Distribution)) 
 
 Make sure to also include the following statements, since at the source these concepts are instances of `skos:Concept` and `euvoc:AccessRight`, however the property dct:accessRights has range dct:RightsStatement, so we need to indicate that those 2 concepts are instances of  dct:RightsStatement.
 
