@@ -1,13 +1,14 @@
-# Dataset Requirements Documentation 
+# Dataset Requirements Documentation
 
 [SEMIC DCAT-AP implementation guidelies](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-implementation-guidelines
-) 
+)
 
 Dataset documentation:
+
 * https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Dataset
 * https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset
 
-![img/dcatap-DatasetShape.svg](img/dcatap-DatasetShape.svg) 
+![img/dcatap-DatasetShape.svg](img/dcatap-DatasetShape.svg)
 
 image: DCAT-AP dcat:Dataset SHACL shapes, based on above query ,rendered by [https://shacl-play.sparna.fr/play/](https://shacl-play.sparna.fr/play/). 
 
@@ -15,19 +16,18 @@ image: DCAT-AP dcat:Dataset SHACL shapes, based on above query ,rendered by [htt
 
 image: DCAT-AP-NL dcat:Dataset SHACL shapes, based on above query ,rendered by [https://shacl-play.sparna.fr/play/](https://shacl-play.sparna.fr/play/). 
 
-
 ## Dataset Mandatory Properties
 
 See [csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv) & [csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv) where this info is compiled
 
 **DCAT-AP mandatory properties of dcat:Dataset:**
 
-*  http://purl.org/dc/terms/description
-*  http://purl.org/dc/terms/title 
+* http://purl.org/dc/terms/description
+* http://purl.org/dc/terms/title 
 
 **DCAT-AP-NL mandatory properties of dcat:Dataset:**
 
-* http://purl.org/dc/terms/accessRights - see section "Supportive Entity: RightsStatement"
+* http://purl.org/dc/terms/accessRights - see section [property dct:accessRights target class dct:RightsStatement](#property-dctaccessrights-target-class-dctrightsstatement)
 * http://www.w3.org/ns/dcat#contactPoint 
 * http://purl.org/dc/terms/creator 
 * http://purl.org/dc/terms/identifier 
@@ -77,15 +77,28 @@ Some of the properties (object properties) require its value to be another insta
 
 **Dataset *optional* object properties are:** -->
 
-### property dct:accessRights  target class dct:RightsStatement
+### property dct:accessRights target class dct:RightsStatement
+
+In DCAT-AP the dcat:Dataset dct:accessRights property answers the question: *is there a legal ground to prevent the access to the dataset?*. In other words *whether a Dataset whose Distributions contain both PUBLIC and RESTRICTED instances is to be considered public or restricted depends on the specific applicable legal provisions.*
+
+The property `dct:accessRights` is defined as:
+> Information that indicates whether the Dataset is publicly accessible, has access restrictions or is not public. [^1]
+
+And the target class of dct:accessRights, `dct:RightsStatement`, is defined as:
+
+> A statement about the intellectual property rights (IPR) held in or over a resource, a legal document giving official permission to do something with a resource, or a statement about access rights. [^2]
+
+There is also a *recommendation* to use controlled values from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right)(:PUBLIC, :RESTRICTED, :NON_PUBLIC), is recommended in order to stimulates interoperability, but is not a requirement. [^3]
+
 
 **Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`
 
 **In [DCAT-AP-NL dct:accessRights](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-access-rights) is a mandatory Dataset object property.**
+
 The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right). 
 Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public. 
 
-And include also the following statements, since at the source these concepts are instances of `skos:Concept` and `euvoc:AccessRight`, however the property dct:accessRights has range dct:RightsStatement, so we need to indicate that those 2 concepts are instances of  dct:RightsStatement.
+Make sure to also include the following statements, since at the source these concepts are instances of `skos:Concept` and `euvoc:AccessRight`, however the property dct:accessRights has range dct:RightsStatement, so we need to indicate that those 2 concepts are instances of  dct:RightsStatement.
 
 ```
 <http://publications.europa.eu/resource/authority/access-right/RESTRICTED>
@@ -581,3 +594,10 @@ A description of an endpoint can be expressed in a machine-readable form, such a
   * dcat:theme
   * dcat:keyword
 
+# Footnotes
+
+[^1]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Dataset
+
+[^2]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Rightsstatement
+
+[^3]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocabularies-to-be-used
