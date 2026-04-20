@@ -1,6 +1,6 @@
 # Dataset Requirements Documentation
 
-[SEMIC DCAT-AP implementation guidelies](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-implementation-guidelines
+[SEMIC DCAT-AP implementation guidelines](https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/solution/dcat-application-profile-implementation-guidelines
 )
 
 Dataset documentation:
@@ -88,15 +88,7 @@ And the target class of dct:accessRights, `dct:RightsStatement`, is defined as:
 
 > A statement about the intellectual property rights (IPR) held in or over a resource, a legal document giving official permission to do something with a resource, or a statement about access rights. [^2]
 
-There is also a *recommendation* to use controlled values from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right)(:PUBLIC, :RESTRICTED, :NON_PUBLIC), is recommended in order to stimulates interoperability, but is not a requirement. [^3]
-
-
-**Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`
-
-**In [DCAT-AP-NL dct:accessRights](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-access-rights) is a mandatory Dataset object property.**
-
-The recommendation from DCAT-AP-NL is to give to provide a value from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right). 
-Use one of the following values: public (http://publications.europa.eu/resource/authority/access-right/PUBLIC); restricted (http://publications.europa.eu/resource/authority/access-right/RESTRICTED); non-public. 
+There is a *recommendation* to use controlled values from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right)(:PUBLIC, :RESTRICTED, :NON_PUBLIC), in order to stimulates interoperability, but is not a requirement. [^3] Non-the-less it seems relevant to use these URIs. **For Dataverses Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>` seems the most appropriate deafult value, since the restrictions are made at the file level and not Dataset level - which we will be able to express in dcat:Distribution entity (see [Section:property dcat:distribution target class dcat:Distribution](#property-dcat:distribution-target-class-dcat:Distribution)) 
 
 Make sure to also include the following statements, since at the source these concepts are instances of `skos:Concept` and `euvoc:AccessRight`, however the property dct:accessRights has range dct:RightsStatement, so we need to indicate that those 2 concepts are instances of  dct:RightsStatement.
 
@@ -106,11 +98,6 @@ Make sure to also include the following statements, since at the source these co
 <http://publications.europa.eu/resource/authority/access-right/PUBLIC>
         rdf:type  dct:RightsStatement .
 ```
-        
-
-
-
-
 
 The recommendation is to follow Dataverse + Datacite interpretation that **a Dataset with 1 restricted file has dct:accessRights=RESTRICTED** in other words:
 
@@ -141,8 +128,6 @@ xyz a dcat:Dataset ;
     dct:license <http://creativecommons.org/publicdomain/zero/1.0> ;
     dct:distribution :dist01 .
 ```
-
-**See section [property dcat:distribution section target class dcat:Distribution](#property-dcatdistribution-target-class-dcatdistribution) for more info on Distribution access-rights & license**
 </div>
 
 ### property dcat:contactPoint target class vcard:Kind
@@ -238,10 +223,9 @@ Example created based on https://ssh.datastations.nl/api/datasets/export?exporte
      ] ;
 ```
 
-We might need to skip the `dct:type` property (which defines the nature of the agent), as  due to its value range being the [ADMS publisher type vocabulary](https://raw.githubusercontent.com/SEMICeu/ADMS-AP/master/purl.org/ADMS_SKOS_v1.00.rdf). This constraint require infering to know what is type of creator, in order to select and approviate value from [ADMS publisher type vocabulary](https://raw.githubusercontent.com/SEMICeu/ADMS-AP/master/purl.org/ADMS_SKOS_v1.00.rdf) (see values below). 
+We might need to skip the `dct:type` property (which defines the nature of the agent), as  due to its value range being the [ADMS publisher type vocabulary](https://raw.githubusercontent.com/SEMICeu/ADMS-AP/master/purl.org/ADMS_SKOS_v1.00.rdf). This constraint require inferring to know what is type of creator, in order to select and appropriate value from [ADMS publisher type vocabulary](https://raw.githubusercontent.com/SEMICeu/ADMS-AP/master/purl.org/ADMS_SKOS_v1.00.rdf) (see values below). 
 
-This might be easier for SSH DS, where creators are often individual (`http://purl.org/adms/publishertype/PrivateIndividual(s)`), but in the ODP we have organizations as creators, which can either be Academia/Scientific organisation, Non-Governmental Organisation, etc.
-
+This might be easier for SSH DS, where creators are often individual (`http://purl.org/adms/publishertype/PrivateIndividual(s)`), but in the ODP we have organizations as creators, which can either be Academia/Scientific organization, Non-Governmental organization, etc.
 
     Academia/Scientific organisation http://purl.org/adms/publishertype/Academia-ScientificOrganisation
     Company http://purl.org/adms/publishertype/Company
@@ -257,7 +241,7 @@ This might be easier for SSH DS, where creators are often individual (`http://pu
 
 ### property dct:publisher target class foaf:Agent
 
-* An entity (organisation) responsible for making the Dataset available.
+* An entity (organization) responsible for making the Dataset available.
 * If the Agent is an organisation, the use of the Organization Ontology is recommended. 
 * there can only be 1 publisher
 
@@ -285,7 +269,7 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
 
 <div style="border: 4px solid orange; padding: 10px; border-radius: 5px;">
 
-### property dcat:distribution target class dcat:Distribution 
+### property dcat:distribution target class dcat:Distribution
 
 * Definition: A physical embodiment of the Dataset in a particular format. 
 * conditional property: if there are files in dataset. Does not apply to the ODP
@@ -293,24 +277,42 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
 
 **Mandatory dcat:Distribution properties:**
 
-* dcat:accessURL (DCAT-AP)  ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
-* dct:license (DCAT-AP-NL) - CANNOT be implement since Dataverse does not allow for license at file-level (Linda and Alessandra have been workinng on this)
+* dcat:accessURL (DCAT-AP) Describes the method to get access to distribution  ie. https://ssh.datastations.nl/file.xhtml?fileId=618769 
+* dct:license (DCAT-AP-NL) - CANNOT be implement since Dataverse does not allow for license at file-level
 
 **Interesting (optional) dcat:Distribution properties:**
 
 * dtc:description (data prop) Source: `files[].description`
 * dct:issued (data prop) The date of formal issuance. Source: `files[].publicationDate`
 * dtc:title  (data prop). Source:`files[].label`
-* dcat:downloadURL.  Source: https://ssh.datastations.nl/api/access/datafile/ + `files[].dataFile.id`
+* dcat:downloadURL. The URL by which a file can be downloaded (ie. curl downloadURL) Source: https://ssh.datastations.nl/api/access/datafile/ + `files[].dataFile.id`
 * dcat:mediaType - recommendation use values from [IANA Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml) which map directly to Dataverse  `files[].dataFile.contentType`
-<!-- dct:format file format of the Distribution. Source: `files[].dataFile.contentType` OR `files[].dataFile.friendlyType` 
-  * Note: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format key:values (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with dataverse values is best-->
-<!-- * dcat:packageFormat "The format of the file in which one or more data files are grouped together" Range: [IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) **Value: `<https://www.iana.org/assignments/media-types/application/zip>`** -->
-
 * http://spdx.org/rdf/terms#checksum (object property) 
   * Class: a <http://spdx.org/rdf/terms#Checksum>
   * http://spdx.org/rdf/terms#algorithm = SHA1  (used by Dataverse)
   * http://spdx.org/rdf/terms#checksumValue
+
+
+<!-- dct:format file format of the Distribution. Source: `files[].dataFile.contentType` OR `files[].dataFile.friendlyType` 
+  * Note: DCAT-AP-NL recommends using values from https://publications.europa.eu/resource/authority/file-type however this list is hard to match with Dataverse file format key:values (ie."contentType": "application/pdf", "friendlyType": "Adobe PDF",). Hence sticking with dataverse values is best-->
+<!-- * dcat:packageFormat "The format of the file in which one or more data files are grouped together" Range: [IANA media type](https://www.iana.org/assignments/media-types/media-types.xhtml) **Value: `<https://www.iana.org/assignments/media-types/application/zip>`** -->
+
+**None DCAT-AP Properties:**
+
+* dct:accessRights - the DCAT vocabulary offers the possibility of indicating dct:accessRights at the Distribution level[^5]. Although this property is not present in DCAT-AP, it can be useful in representing Dataverse's restrictions at the file level. Source: `files[].restricted`
+  * Dataverse value: true == in DCAT-AP `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>`
+  * Dataverse value: false == in DCAT-AP `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/RESTRICTED>`
+
+**Distribution access:**
+
+The recommendation is to use dcat:downloadURL for public downloadable resources, in addition to dcat:accessURL which describes the method how to get access, and licencing information that often some accessibility aspects contain.
+
+> dcat:accessURL SHOULD be used for the URL of a service or location that can provide access to this distribution, typically through a Web form, query or API call.
+> 
+> dcat:downloadURL is preferred for direct links to downloadable resources.
+> 
+> If the distribution(s) are accessible only through a landing page (i.e., direct download URLs are not known), then the landing page URL associated with the dcat:Dataset SHOULD be duplicated as access URL on a distribution (see 5.7 Dataset available only behind some Web page). [^4]
+
 
 
 **Future Distribution properties:**
@@ -584,16 +586,6 @@ A description of an endpoint can be expressed in a machine-readable form, such a
           dcat:theme                <http://publications.europa.eu/resource/authority/data-theme/TECH> .
 ```
 
-@andrecastro0o Points to discuss & decide:
-
-* Dataverse divides its API in different parts. Shouldn't there be a DataService for each one ![img/DataverseAPIs.png](img/DataverseAPIs.png)
-* changed DataService URI https://portal.odissei.nl/dcat-ap/native-api in order to avoid a loop with dcat:endpointURL property. An named-entity cannot be both itself and a value of one of its properties.
-* dcat:contactPoint value - instead of using several blank notes that say the same in intities DataService, Catalog and Dataset, we should have 1 named node and point all dcat:contactPoint properties to it
-* skeptical of certain (DCAT-AP-NL) mandatory props to describe a DataService (see [DCAT-AP-NL30/issues/249](https://github.com/Geonovum/DCAT-AP-NL30/issues/249)), namely
-  * dct:identifier
-  * dcat:theme
-  * dcat:keyword
-
 # Footnotes
 
 [^1]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Dataset
@@ -601,3 +593,7 @@ A description of an endpoint can be expressed in a machine-readable form, such a
 [^2]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Rightsstatement
 
 [^3]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#controlled-vocabularies-to-be-used
+
+[^4]: https://www.w3.org/TR/vocab-dcat-3/#Property:distribution_access_url
+
+[^5]: https://www.w3.org/TR/vocab-dcat-3/#Class:Distribution
