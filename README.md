@@ -11,7 +11,12 @@
 
 ### Jupyter Notebooks
 
+* **[exports-tests.ipynb](exports-tests.ipynb)** - Test for Dataverse exporter outputs with SHACL shape [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl)
 * **[requirements-analysis.ipynb](requirements-analysis.ipynb)**
+
+### SHACL Shapes
+
+* [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl) - DCAT-AP-NL requirements for DANS
 
 
 ### Overview CSVs
