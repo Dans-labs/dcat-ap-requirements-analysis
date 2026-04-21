@@ -12,16 +12,22 @@
 
 exs:dcatDatasetShape a sh:NodeShape ;
   sh:targetClass dcat:Dataset ;
-  sh:property [ sh:path dct:title ;       sh:minCount 1 ; sh:datatype xsd:string ] ; # AP-NL: 1..n
-  sh:property [ sh:path dct:description ; sh:minCount 1 ; sh:datatype xsd:string ] ; # AP-NL: 1..n
+  sh:property [ sh:path dct:title ; sh:minCount 1 ; sh:or (
+      [ sh:datatype xsd:string ]
+      [ sh:datatype rdf:langString ]
+    ) ] ;
+  sh:property [ sh:path dct:description ; sh:minCount 1 ; sh:or (
+      [ sh:datatype xsd:string ]
+      [ sh:datatype rdf:langString ]
+    ) ] ; # AP-NL: 1..n
   sh:property [ sh:path dct:identifier ;  sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; # AP-NL: 1..1
   sh:property [ sh:path dct:hasVersion ;  sh:minCount 1 ; sh:datatype xsd:string ] ;
   sh:property [ sh:path dct:accessRights ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:dctRightsStatementShape ] ;  # AP-NL: 1..1
   sh:property [ sh:path dcat:contactPoint ; sh:minCount 1 ; sh:maxCount 1 ;sh:node exs:vcardKindShape ] ;  # AP-NL: 1..1
   sh:property [ sh:path dct:creator ;      sh:minCount 1 ; sh:node exs:foafAgentShape ] ; # AP-NL: 1..n
   sh:property [ sh:path dcat:distribution ; sh:minCount 0 ; sh:node exs:dcatDistributionShape ] ;
-  sh:property [ sh:path dct:license ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path dcat:theme ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ; # AP-NL: 1..n
+  
   sh:property [ sh:path dct:publisher ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:foafAgentShape ] ; # AP-NL: 1..1
   sh:property [ # Allow issued to be string OR date OR dateTime
                 sh:path dct:issued ; sh:minCount 1 ;
@@ -42,12 +48,18 @@ exs:dcatDatasetShape a sh:NodeShape ;
 
 exs:dcatDistributionShape a sh:NodeShape ;
   sh:targetClass dcat:Distribution ;
-  sh:property [ sh:path dct:title ;       sh:minCount 1 ; sh:datatype xsd:string ] ;  # AP-NL: 1..n
+  sh:property [ sh:path dct:title ; sh:minCount 1 ; sh:or (
+      [ sh:datatype xsd:string ]
+      [ sh:datatype rdf:langString ]
+    ) ] ;  # AP-NL: 1..n
   sh:property [ sh:path dct:license ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;  # AP-NL: 1..1
-  sh:property [ sh:path dcat:accessURL ;  sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;  # AP-NL: 1..1
-  sh:property [ sh:path dcat:byteSize ;   sh:datatype xsd:nonNegativeInteger ] ;
-  sh:property [ sh:path dcat:mediaType ;  sh:nodeKind sh:IRI ] ;
-  sh:property [ sh:path dct:description ; sh:datatype xsd:string ] ;
+  sh:property [ sh:path dcat:accessURL ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;  # AP-NL: 1..1
+  sh:property [ sh:path dcat:byteSize ; sh:datatype xsd:nonNegativeInteger ] ;
+  sh:property [ sh:path dcat:mediaType ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path dct:description ; sh:or (
+      [ sh:datatype xsd:string ]
+      [ sh:datatype rdf:langString ]
+    ) ] ;
   sh:property [ sh:path dcat:downloadURL ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path spdx:checksum ; sh:node exs:spdxChecksumShape ] .
 
@@ -55,11 +67,13 @@ exs:vcardKindShape a sh:NodeShape ; # contact point
   sh:targetClass vcard:Kind ;
   sh:property [ sh:path dct:identifier ; sh:minCount 1 ; sh:datatype xsd:string ] .
   # sh:property [ sh:path vcard:fn ;       sh:minCount 1 ; sh:datatype xsd:string ] ;
-  # sh:property [ sh:path vcard:hasEmail ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .
 
 exs:foafAgentShape  a sh:NodeShape ;
   sh:targetClass foaf:Agent ;
-  sh:property [ sh:path foaf:name ; sh:minCount 1 ; sh:datatype xsd:string ] .
+  sh:property [ sh:path foaf:name ; sh:minCount 1 ;     sh:or (
+      [ sh:datatype xsd:string ]
+      [ sh:datatype rdf:langString ]
+    ) ] .
 
 exs:spdxChecksumShape a sh:NodeShape ;
   sh:targetClass spdx:Checksum ;
@@ -71,8 +85,16 @@ exs:dctRightsStatementShape a sh:NodeShape ;
 
 exs:dcatCatalogShape a sh:NodeShape ;
   sh:targetClass dcat:Catalog ;
-  sh:property [ sh:path dct:title ;       sh:minCount 1 ; sh:datatype xsd:string ] ;  # AP-NL: 1..n
-  sh:property [ sh:path dct:description ; sh:minCount 1 ; sh:datatype xsd:string ] ; # AP-NL: 1..n
+  sh:property [ sh:path dct:title ; sh:minCount 1 ; 
+    sh:or (
+      [ sh:datatype xsd:string ]
+      [ sh:datatype rdf:langString ]
+    )] ;
+  sh:property [ sh:path dct:description ; sh:minCount 1 ; 
+    sh:or (
+    [ sh:datatype xsd:string ]
+    [ sh:datatype rdf:langString ]
+  )] ;
   sh:property [ sh:path dct:publisher ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:foafAgentShape ] ; # AP-NL: 1..1
   sh:property [ sh:path dct:creator; ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path dcat:contactPoint ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:vcardKindShape ] ;  ; # AP-NL: 1..1
