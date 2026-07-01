@@ -22,7 +22,8 @@ exs:dcatDatasetShape a sh:NodeShape ;
     ) ] ; # AP-NL: 1..n
   sh:property [ sh:path dct:identifier ;  sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; # AP-NL: 1..1
   sh:property [ sh:path dct:hasVersion ;  sh:minCount 1 ; sh:datatype xsd:string ] ;
-  sh:property [ sh:path dct:accessRights ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:dctRightsStatementShape ] ;  # AP-NL: 1..1
+  # Temporarily disabling dct:accessRights, as it is not clear what value should be given
+  # sh:property [ sh:path dct:accessRights ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:dctRightsStatementShape ] ;  # AP-NL: 1..1
   sh:property [ sh:path dcat:contactPoint ; sh:minCount 1 ; sh:maxCount 1 ;sh:node exs:vcardKindShape ] ;  # AP-NL: 1..1
   sh:property [ sh:path dct:creator ;      sh:minCount 1 ; sh:node exs:foafAgentShape ] ; # AP-NL: 1..n
   sh:property [ sh:path dcat:distribution ; sh:minCount 0 ; sh:node exs:dcatDistributionShape ] ;
@@ -97,6 +98,6 @@ exs:dcatCatalogShape a sh:NodeShape ;
   )] ;
   sh:property [ sh:path dct:publisher ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:foafAgentShape ] ; # AP-NL: 1..1
   sh:property [ sh:path dct:creator; ; sh:nodeKind sh:IRI ] ;
-  sh:property [ sh:path dcat:contactPoint ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:vcardKindShape ] ;  ; # AP-NL: 1..1
+  sh:property [ sh:path dcat:contactPoint ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:vcardKindShape ] ;   # AP-NL: 1..1
   sh:property [ sh:path dcat:dataset ; sh:minCount 1 ; sh:node exs:dcatDatasetShape ]  . # AP-NL: 1..n
 

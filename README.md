@@ -4,19 +4,20 @@
 
 ### Technical Requirements analysis/scoping
 
-* **[DCAT-AP-NL-DANS-reqs.md](DCAT-AP-NL-DANS-reqs.md)** - Technical Requirements
+* (outdate) **[DCAT-AP-NL-DANS-reqs.md](DCAT-AP-NL-DANS-reqs.md)** - Technical Requirements
+  * up-to-date version in [DCAT-AP-NL-DANS-reqs.docx](https://knaw.sharepoint.com/:w:/r/sites/msteams_d7e185/Gedeelde%20documenten/General/Deliverables/2026/2026-D06-DCAT-AP/DCAT-AP-NL-DANS-reqs.docx?d=we1674500575343ec9fd5bdc405040e7f&csf=1&web=1&e=MmCAPW) 
 * **[DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md)** - implementation guidelines
-* **[SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl)** - Dataset export tests with SHACL shapes
-  * Run: `shacl v --shapes DANS-shacl.ttl --data example-DANS-ssh.ttl`
+
+### Testing & Validation
+
+* [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl) - DCAT-AP-NL requirements for DANS
+* [Makefile](Makefile) - includes tests:
+  * `make test_ODP_staging_datasets`  (requires: being inside DANS VPN)
 
 ### Jupyter Notebooks
 
-* **[exports-tests.ipynb](exports-tests.ipynb)** - Test for Dataverse exporter outputs with SHACL shape [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl)
 * **[requirements-analysis.ipynb](requirements-analysis.ipynb)**  *Landscape analysis: DCAT & DCAT-AP*** Authors: - Alessandra Polimero (@aapolimeno) Date: 2024.11
 
-### SHACL Shapes
-
-* [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl) - DCAT-AP-NL requirements for DANS
 
 ### Overview CSVs
 
@@ -28,7 +29,7 @@
 
 DCAT-AP makes use of some controlled vocabularies. For convinience, some of the vocabularies have been saved to [CVs/](CVs/)
 
-### SPARQL Qeuries
+### SPARQL Queries
 
 [sparql/](sparql/) stores some SPARQL queries, mostly used to understand DCAT-AP  
 

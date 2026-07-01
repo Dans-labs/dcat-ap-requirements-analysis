@@ -1,4 +1,5 @@
 venv
 zz
 .vscode/
+tmp/
 cspell.config.yaml
