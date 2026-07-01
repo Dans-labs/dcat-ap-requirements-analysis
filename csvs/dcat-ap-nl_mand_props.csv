@@ -1,0 +1,9 @@
+prop_path,prop_shape
+http://purl.org/dc/terms/accessRights,http://modellen.geostandaarden.nl/dcat-ap-nl/id/shape/DatasetShape_accessRights_minCount
+http://purl.org/dc/terms/creator,http://modellen.geostandaarden.nl/dcat-ap-nl/id/shape/DatasetShape_creator_minCount
+http://purl.org/dc/terms/description,https://semiceu.github.io/DCAT-AP/releases/3.0.1#dcat:DatasetShape/8f61614144aa7bca188b24f5976593dc08aad0e6
+http://purl.org/dc/terms/identifier,http://modellen.geostandaarden.nl/dcat-ap-nl/id/shape/DatasetShape_identifier_minCount
+http://purl.org/dc/terms/publisher,http://modellen.geostandaarden.nl/dcat-ap-nl/id/shape/DatasetShape_publisher_minCount
+http://purl.org/dc/terms/title,https://semiceu.github.io/DCAT-AP/releases/3.0.1#dcat:DatasetShape/f8b02efd063b8089b72ce9677a1e4a3488eeb9a9
+http://www.w3.org/ns/dcat#contactPoint,http://modellen.geostandaarden.nl/dcat-ap-nl/id/shape/DatasetShape_contactPoint_minCount
+http://www.w3.org/ns/dcat#theme,http://modellen.geostandaarden.nl/dcat-ap-nl/id/shape/DatasetShape_theme_minCount

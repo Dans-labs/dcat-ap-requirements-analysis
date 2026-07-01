@@ -1,0 +1,6 @@
+prop_path,prop_range
+http://purl.org/dc/terms/accessRights,http://purl.org/dc/terms/RightsStatement
+http://www.w3.org/ns/dcat#contactPoint,http://www.w3.org/2006/vcard/ns#Kind
+http://purl.org/dc/terms/creator,http://xmlns.com/foaf/0.1/Agent
+http://purl.org/dc/terms/publisher,http://xmlns.com/foaf/0.1/Agent
+http://www.w3.org/ns/dcat#theme,http://www.w3.org/2004/02/skos/core#Concept
