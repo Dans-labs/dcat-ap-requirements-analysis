@@ -12,6 +12,7 @@
 
 * [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl) - DCAT-AP-NL requirements for DANS
 * [Makefile](Makefile) - includes tests:
+  * requirements: Apache Jena command-line utilities (see <https://jena.apache.org/download/>)
   * `make test_ODP_staging_datasets`  (requires: being inside DANS VPN)
 
 ### Jupyter Notebooks
