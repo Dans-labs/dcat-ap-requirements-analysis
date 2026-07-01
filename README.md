@@ -12,12 +12,11 @@
 ### Jupyter Notebooks
 
 * **[exports-tests.ipynb](exports-tests.ipynb)** - Test for Dataverse exporter outputs with SHACL shape [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl)
-* **[requirements-analysis.ipynb](requirements-analysis.ipynb)**
+* **[requirements-analysis.ipynb](requirements-analysis.ipynb)**  *Landscape analysis: DCAT & DCAT-AP*** Authors: - Alessandra Polimero (@aapolimeno) Date: 2024.11
 
 ### SHACL Shapes
 
 * [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl) - DCAT-AP-NL requirements for DANS
-
 
 ### Overview CSVs
 
@@ -25,10 +24,13 @@
 * **[csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv)** - Overview of DCAT-AP + DCAT-AP-NL Dataset **recommended** properties
 * **[csvs/ap-nl-dataset-CVs.csv](csvs/ap-nl-dataset-CVs.csv)**  Overview of DCAT-AP Dataset properties with controlled vocs as range
 
+### Controlled Vocabularies
 
-**[landscape_analysis.ipynb](landscape_analysis.ipynb) *Landscape analysis: DCAT & DCAT-AP***
-* Authors: - Alessandra Polimero (@aapolimeno)
-* Date: 2024.11
+DCAT-AP makes use of some controlled vocabularies. For convinience, some of the vocabularies have been saved to [CVs/](CVs/)
+
+### SPARQL Qeuries
+
+[sparql/](sparql/) stores some SPARQL queries, mostly used to understand DCAT-AP  
 
 ## 🛠 Repository setup 🛠 
 
