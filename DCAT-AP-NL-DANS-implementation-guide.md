@@ -22,8 +22,12 @@ See [csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv) & [cs
 
 **DCAT-AP mandatory properties of dcat:Dataset:**
 
-* http://purl.org/dc/terms/description
-* http://purl.org/dc/terms/title 
+* http://purl.org/dc/terms/description -
+  * value for ODP: xsd:string
+  * value for SSH DS: sh:datatype rdf:langString 
+* http://purl.org/dc/terms/title  - for SSH DS sh:datatype rdf:langString 
+  * value for ODP: xsd:string
+  * value for SSH DS: sh:datatype rdf:langString 
 
 **DCAT-AP-NL mandatory properties of dcat:Dataset:**
 
