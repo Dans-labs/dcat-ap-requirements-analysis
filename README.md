@@ -15,6 +15,7 @@
   * requirements: Apache Jena command-line utilities (see <https://jena.apache.org/download/>)
   * `make test_ODP_staging_datasets`  (requires: being inside DANS VPN)
   * `make sparql_summary_ODP_staging_datasets` - displays summary of downloaed dataset
+  * `make test_SSH_test_datasets`
 
 ### Jupyter Notebooks
 
