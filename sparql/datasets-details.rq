@@ -1,0 +1,35 @@
+
+
+# invoked by Makefile
+# create a summary of the datasets
+
+
+#?description ?issued ?modified ?license ?keyword ?theme ?themeLabel
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT  DISTINCT ?pid ?title ?dataTheme ?version ?publisher ?creatorName ?creatorID ?contactPointID ?contactPointName
+WHERE {
+  ?dataset a dcat:Dataset ;
+           dct:identifier ?pid ;
+           dct:title ?title_long ;
+           dct:hasVersion ?version ;
+           dcat:contactPoint ?contactPoint ; 
+           dcat:theme ?themeURI  ;
+           dct:publisher ?publisher ;
+           dct:creator ?creator .
+
+  BIND (SUBSTR(STR(?title_long), 1, 30) AS ?title)
+  BIND (REPLACE(STR(?themeURI), ".*/", "") AS ?dataTheme)
+
+  ?creator foaf:name ?creatorName .
+  OPTIONAL { ?creator dct:identifier ?creatorID . } 
+
+  ?contactPoint dct:identifier ?contactPointID .
+  OPTIONAL { ?contactPoint foaf:name ?contactPointName . }
+              
+
+}
+ORDER BY ?pid
