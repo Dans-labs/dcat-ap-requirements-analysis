@@ -536,9 +536,15 @@ In which case the above DCAT-AP export would look like:
 
 # optinally we can include  a statement about the elsst keywords
 # all the skos:prefLabel values can be included. I kept only English and Dutch for readbility sake.
+
 <https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903> a skos:Concept;
   skos:prefLabel "SOCIAL HISTORY"@en, "SOCIALE GESCHIEDENIS"@nl .
 ```
+
+In DCAT-AP-NL <https://geonovum.github.io/DCAT-AP-NL30/#dataset-theme> is stated that in addition to a value from the European Dataset Theme Vocabulary, it is recommended to include values from domain-specific vocabularies:
+
+> Aanbevolen wordt om naast een waarde uit de Europese Dataset Theme Vocabulary ook in meerdere thema's waarden op te nemen uit domeinspecifieke vocabulaires.  
+
 
 
 
