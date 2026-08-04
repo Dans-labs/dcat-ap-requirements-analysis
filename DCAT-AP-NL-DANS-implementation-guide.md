@@ -520,10 +520,11 @@ The same keyword in the [DCAT-AP](https://portal.odissei.nl/api/datasets/export?
 <https://doi.org/10.17026/DANS-XKF-UGET>
         rdf:type           dcat:Dataset;
         dcat:keyword       "SOCIAL HISTORY"@en , "SOCIALE GESCHIEDENIS"@nl;
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/SOCI> .
+
 ```
 
-**A way to circuvent this information loss issue, and still comform to `dcat:keyword` range limitation, and DCAT-AP requirements**, would be to add a 2nd key words property that has IRI as range.
-That can be achieved with the  [dct:subject](http://purl.org/dc/terms/subject)`
+**A way to circuvent this information loss issue, and still comform to `dcat:keyword` range limitation, and DCAT-AP requirements**, would be to **include the keyword URIs to the [dcat:theme](https://www.w3.org/TR/vocab-dcat-3/#Property:resource_theme) property**. The dcat:theme is a subproperty of [dct:subject](http://purl.org/dc/terms/subject)`, and allows for multiple themes, belonging to a skos:ConceptScheme, skos:Collection, owl:Ontology.
 
 In which case the above DCAT-AP export would look like:
 
@@ -531,13 +532,14 @@ In which case the above DCAT-AP export would look like:
 <https://doi.org/10.17026/DANS-XKF-UGET>
         rdf:type           dcat:Dataset;
         dcat:keyword       "SOCIAL HISTORY"@en , "SOCIALE GESCHIEDENIS"@nl;
-        dct:subject https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903 .
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/SOCI>, <https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903> .
 
-https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903 a skos:Concept;
+# optinally we can include  a statement about the elsst keywords
+# all the skos:prefLabel values can be included. I kept only English and Dutch for readbility sake.
+<https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903> a skos:Concept;
   skos:prefLabel "SOCIAL HISTORY"@en, "SOCIALE GESCHIEDENIS"@nl .
 ```
 
-Note that all the skos:prefLabel values can be included. I kept only English and Dutch for readbility sake.
 
 
 # Catalog
