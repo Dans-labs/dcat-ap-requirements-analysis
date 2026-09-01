@@ -1,6 +1,9 @@
 
 staging_datasets_DOIs = 10.34894/VOL0PF 10.17026/SS/0KMYER 10.57934/0B01E41080806C62 # accessible only in DANS intranet
-ssh_test_datasets_DOIs = 10.5072/TSS/P6CCN7 10.5072/TSS/WPHNNL  10.5072/TSS/LSXCX8 # accessible only in DANS intranet
+ssh_test_datasets_DOIs = 10.5072/TSS/P6CCN7 
+# 10.5072/TSS/MCHRNF
+# 10.5072/TSS/PTLGLS 
+# 10.5072/TSS/P6CCN7 # accessible only in DANS intranet
 DANS_SHACL = SHACL/DANS-shacl.ttl
 TMP_CAT_TTL = tmp/all.ttl
 
