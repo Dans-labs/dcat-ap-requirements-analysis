@@ -25,7 +25,7 @@ download_SSH_test_datasets: clean tmp_ssh
 
 	@for i in $(ssh_test_datasets_DOIs); do \
 		safe=$$(echo "$$i" | tr '/' '_'); \
-		echo "Downloading dataset: https://portal.staging.odissei.nl/dataset.xhtml?persistentId=doi:$$i"; \
+		echo "Downloading dataset: https://test.ssh.datastations.nl/dataset.xhtml?persistentId=doi:$$i"; \
  		curl -s "https://test.ssh.datastations.nl/api/datasets/export?exporter=dcat3-turtle&persistentId=doi%3A$$i" -o "tmp/ssh/dataset_$$safe.ttl"; \
  		curl -s "https://test.ssh.datastations.nl/api/datasets/export?exporter=dcat3-jsonld&persistentId=doi%3A$$i" -o "tmp/ssh/dataset_$$safe.jsonld"; \
   		curl -s "https://test.ssh.datastations.nl/api/datasets/export?exporter=dcat3-rdfxml&persistentId=doi%3A$$i" -o "tmp/ssh/dataset_$$safe.rdf"; \
