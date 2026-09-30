@@ -21,7 +21,6 @@ exs:dcatDatasetShape a sh:NodeShape ;
       [ sh:datatype rdf:langString ]
     ) ] ; # AP-NL: 1..n
   sh:property [ sh:path dct:identifier ;  sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; # AP-NL: 1..1
-  sh:property [ sh:path dct:hasVersion ;  sh:minCount 1 ; sh:datatype xsd:string ] ;
   # Temporarily deactivated dct:accessRights, as it is not clear what value should be given
   sh:property [ sh:deactivated true ; sh:path dct:accessRights ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:dctRightsStatementShape ] ;  # AP-NL: 1..1
   sh:property [ sh:path dcat:contactPoint ; sh:minCount 1 ; sh:maxCount 1 ;sh:node exs:vcardKindShape ] ;  # AP-NL: 1..1
@@ -51,7 +50,7 @@ exs:dcatDatasetShape a sh:NodeShape ;
                 sh:or (
                         [ sh:datatype xsd:string ]
                         [ sh:datatype xsd:decimal ]
-                      )
+                      );
               ] .
 
 exs:dcatDistributionShape a sh:NodeShape ;
