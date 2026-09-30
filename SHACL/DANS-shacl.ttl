@@ -45,6 +45,13 @@ exs:dcatDatasetShape a sh:NodeShape ;
                         [ sh:datatype xsd:date ]
                         [ sh:datatype xsd:dateTime ]
                       )
+              ] ;
+  sh:property [
+                sh:path dcat:version ; sh:minCount 1 ; sh:maxCount 1 ;  # DANS/ODP dcat:version in 1..1 DCAT-AP: 0..1
+                sh:or (
+                        [ sh:datatype xsd:string ]
+                        [ sh:datatype xsd:decimal ]
+                      )
               ] .
 
 exs:dcatDistributionShape a sh:NodeShape ;
