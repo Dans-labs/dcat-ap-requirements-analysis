@@ -21,9 +21,8 @@ exs:dcatDatasetShape a sh:NodeShape ;
       [ sh:datatype rdf:langString ]
     ) ] ; # AP-NL: 1..n
   sh:property [ sh:path dct:identifier ;  sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ; # AP-NL: 1..1
-  sh:property [ sh:path dct:hasVersion ;  sh:minCount 1 ; sh:datatype xsd:string ] ;
-  # Temporarily disabling dct:accessRights, as it is not clear what value should be given
-  # sh:property [ sh:path dct:accessRights ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:dctRightsStatementShape ] ;  # AP-NL: 1..1
+  # Temporarily deactivated dct:accessRights, as it is not clear what value should be given
+  sh:property [ sh:deactivated true ; sh:path dct:accessRights ; sh:minCount 1 ; sh:maxCount 1 ; sh:node exs:dctRightsStatementShape ] ;  # AP-NL: 1..1
   sh:property [ sh:path dcat:contactPoint ; sh:minCount 1 ; sh:maxCount 1 ;sh:node exs:vcardKindShape ] ;  # AP-NL: 1..1
   sh:property [ sh:path dct:creator ;      sh:minCount 1 ; sh:node exs:foafAgentShape ] ; # AP-NL: 1..n
   sh:property [ sh:path dcat:distribution ; sh:minCount 0 ; sh:node exs:dcatDistributionShape ] ;
@@ -45,6 +44,13 @@ exs:dcatDatasetShape a sh:NodeShape ;
                         [ sh:datatype xsd:date ]
                         [ sh:datatype xsd:dateTime ]
                       )
+              ] ;
+  sh:property [
+                sh:path dcat:version ; sh:minCount 1 ; sh:maxCount 1 ;  # DANS/ODP dcat:version in 1..1 DCAT-AP: 0..1
+                sh:or (
+                        [ sh:datatype xsd:string ]
+                        [ sh:datatype xsd:decimal ]
+                      );
               ] .
 
 exs:dcatDistributionShape a sh:NodeShape ;
@@ -53,7 +59,7 @@ exs:dcatDistributionShape a sh:NodeShape ;
       [ sh:datatype xsd:string ]
       [ sh:datatype rdf:langString ]
     ) ] ;  # AP-NL: 1..n
-  sh:property [ sh:path dct:license ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;  # AP-NL: 1..1
+  sh:property [ sh:path dct:license ; sh:minCount 0 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;  # AP-NL: 1..1
   sh:property [ sh:path dcat:accessURL ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;  # AP-NL: 1..1
   sh:property [ sh:path dcat:byteSize ; sh:datatype xsd:nonNegativeInteger ] ;
   sh:property [ sh:path dcat:mediaType ; sh:nodeKind sh:IRI ] ;

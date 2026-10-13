@@ -31,7 +31,7 @@ See [csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv) & [cs
 
 **DCAT-AP-NL mandatory properties of dcat:Dataset:**
 
-* http://purl.org/dc/terms/accessRights - see section [property dct:accessRights target class dct:RightsStatement](#property-dctaccessrights-target-class-dctrightsstatement)
+* http://purl.org/dc/terms/accessRights - see section [property dct:accessRights target class dct:RightsStatement](#property-dctaccessrights-target-class-dctrightsstatemkeent)
 * http://www.w3.org/ns/dcat#contactPoint 
 * http://purl.org/dc/terms/creator 
 * http://purl.org/dc/terms/identifier 
@@ -479,6 +479,74 @@ Other possible themes are [ECON](https://op.europa.eu/en/web/eu-vocabularies/con
             }
             
         ```
+
+### Dataset keywords
+
+DCAT-AP and subsquencial DCAT-AP-NL implement the keywords of a Dataset, through the property [dcat:keyword](https://www.w3.org/TR/vocab-dcat-3/#Property:resource_keyword), which has the range `rdfs:Literal`.
+This means that when mapping keywords to a DCAT-AP Dataset representation, the **keywords have to be literal strings, even if in the source keywords are named entities with their own URI and label**.
+In order words, there's a substancial information loss, once the connection (URI) to the source concept is broken, resulting in a diminished the potential for findability and interoperability.
+
+Take the example ODISSEI Dataset:[doi:10.17026/DANS-XKF-UGET](https://portal.odissei.nl/dataset.xhtml?persistentId=doi:10.17026/DANS-XKF-UGET) where the ELSST keyword: 'SOCIAL HISTORY'@en, is represented in [Dataverse native JSON](https://portal.odissei.nl/api/datasets/export?exporter=dataverse_json&persistentId=doi%3A10.17026/DANS-XKF-UGET) as:
+
+```json
+{
+"typeName": "dansElsstClassification",
+"multiple": true,
+"typeClass": "primitive",
+"value": [
+    "https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903"
+],
+"expandedvalue": [
+    {
+    "@id": "https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903",
+    "termName": [
+        {
+        "lang": "en",
+        "value": "SOCIAL HISTORY"
+        },
+        {
+        "lang": "nl",
+        "value": "SOCIALE GESCHIEDENIS"
+        }
+    ]
+    }
+]
+}
+```
+
+The same keyword in the [DCAT-AP](https://portal.odissei.nl/api/datasets/export?exporter=dcat3-turtle&persistentId=doi%3A10.17026/DANS-XKF-UGET) export:
+
+```ttl
+<https://doi.org/10.17026/DANS-XKF-UGET>
+        rdf:type           dcat:Dataset;
+        dcat:keyword       "SOCIAL HISTORY"@en , "SOCIALE GESCHIEDENIS"@nl;
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/SOCI> .
+
+```
+
+**A way to circuvent this information loss issue, and still comform to `dcat:keyword` range limitation, and DCAT-AP requirements**, would be to **include the keyword URIs to the [dcat:theme](https://www.w3.org/TR/vocab-dcat-3/#Property:resource_theme) property**. The dcat:theme is a subproperty of [dct:subject](http://purl.org/dc/terms/subject)`, and allows for multiple themes, belonging to a skos:ConceptScheme, skos:Collection, owl:Ontology.
+
+In which case the above DCAT-AP export would look like:
+
+```ttl
+<https://doi.org/10.17026/DANS-XKF-UGET>
+        rdf:type           dcat:Dataset;
+        dcat:keyword       "SOCIAL HISTORY"@en , "SOCIALE GESCHIEDENIS"@nl;
+        dcat:theme <http://publications.europa.eu/resource/authority/data-theme/SOCI>, <https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903> .
+
+# optinally we can include  a statement about the elsst keywords
+# all the skos:prefLabel values can be included. I kept only English and Dutch for readbility sake.
+
+<https://elsst.cessda.eu/id/4/335469ad-76bc-4c97-9050-b75dbce01903> a skos:Concept;
+  skos:prefLabel "SOCIAL HISTORY"@en, "SOCIALE GESCHIEDENIS"@nl .
+```
+
+In DCAT-AP-NL <https://geonovum.github.io/DCAT-AP-NL30/#dataset-theme> is stated that in addition to a value from the European Dataset Theme Vocabulary, it is recommended to include values from domain-specific vocabularies:
+
+> Aanbevolen wordt om naast een waarde uit de Europese Dataset Theme Vocabulary ook in meerdere thema's waarden op te nemen uit domeinspecifieke vocabulaires.  
+
+
+
 
 # Catalog
 
