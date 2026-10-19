@@ -38,7 +38,7 @@ TODO re-read for Report:
 
 DCAT-AP stands for the *DCAT Application-Profile*. With *DCAT* referring to *W3C's Data Catalog Vocabulary*, "an RDF vocabulary designed to facilitate interoperability between data catalogs published on the Web" [^dcat3]. And *Application-Profile* referencing the wider of "metadata elements, policies, and guidelines defined for a particular application"[^ap-dc], with the intention "to facilitate the data exchange in a well-defined application context"[^ap-semic]
 
-The DCAT vocabulary, currently in its third version, defines key classes, and accompanying properties essential to express the universe of digital data catalogs in RDF knowledge graphs. With first working draft dating back to 2012, DCAT concepts have been employed in data management systems such as CKAN (https://ecosystem.ckan.org/extension/ckanext-dcat) to expose the metadata of catalogs and their resources as serialized RDF. The vocabulary seems able to strike a good balance between expressivity and pragmatism; being specific and yet leaving room for interpretation; encouraging the use of stable and shared definitions, such as *dataset* or *distribution*, but still define them in ways that encompasses the many heterogenous approaches and reality of data management.
+The ***DCAT vocabulary***, currently in its third version, defines key classes, and accompanying properties essential to express the universe of digital data catalogs in RDF knowledge graphs. With first working draft dating back to 2012, DCAT concepts have been employed in data management systems such as CKAN (https://ecosystem.ckan.org/extension/ckanext-dcat) to expose the metadata of catalogs and their resources as serialized RDF. The vocabulary seems able to strike a good balance between expressivity and pragmatism; being specific and yet leaving room for interpretation; encouraging the use of stable and shared definitions, such as *dataset* or *distribution*, but still define them in ways that encompasses the many heterogenous approaches and reality of data management.
 
 The following tables display a selection of DCAT classes and properties and their definitions.
 
@@ -59,11 +59,39 @@ The following tables display a selection of DCAT classes and properties and thei
 | dcat:mediaType    | The media type of the distribution as defined by IANA.                                                                                                             |
 | dcat:theme        | A main category of the resource. A resource can have multiple themes.                                                                                              |
 
-*Application-Profile*
 
->  An Application Profile is a specification that reuses terms from one or more base standards, adding more specificity by identifying mandatory, recommended and optional elements to be used for a particular application, as well as recommendations for controlled vocabularies to be used. [^1]
+***Application-Profile***
 
-> A Dataset is a collection of data, published or curated by a single source, and available for access or download in one or more formats. A Data Portal is a Web-based system that contains a data catalogue with descriptions of datasets and provides services enabling discovery and reuse of the datasets. [^1]
+> An Application Profile is a data specification aimed to facilitate the data exchange in a well-defined application context. It re-uses concepts from one or more semantic data specifications, while adding more specificity, by identifying mandatory, recommended, and optional elements [^semic-guide]
+
+***DCAT-AP*** focuses on providing the resources to describe in a machine-readable way, the universe of data catalogues, datasets and data services. Like the definition of Application-Profile states, builds upon the DCAT3 vocabulary's classes and properties, as well on other RDF vocabularies, such as [Dublin Core Terms](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/), [SKOS](https://www.w3.org/2009/08/skos-reference/skos.html) or [FOAF](http://xmlns.com/foaf/0.1/). It is developed, governed and maintained by the [Semantic Interoperability Community (SEMIC)](https://github.com/SEMICeu), within the umbrella of the [Interoperable Europe](https://interoperable-europe.ec.europa.eu/interoperable-europe) initiative and its overall goal of strengthening EU's public sector interoperability. 
+DCAT-AP is core context 
+ it does not impose any requirements on data systems, apart from being able to "export and import data in RDF in conformance with this Application Profile." 
+
+>  Although this is still at the core of the specification, **DCAT-AP is not limited to public accessible Open Data, but can be applied to any kind of datasets. In the past decade, DCAT-AP has grown from a single specification to a whole ecosystem of related and interconnected specifications.** 
+
+Motivation: interoperability; adoption
+
+* DCAT-AP - what it is
+* DCAT-AP - context and motivation
+* 
+
+an European Commission policy and cooperation framework intended to connect public administrations across borders and sectors through digital public services.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -78,3 +106,7 @@ The following tables display a selection of DCAT classes and properties and thei
 [^ap-dc]: https://www.dublincore.org/specifications/dublin-core/usageguide/2001-04-12/glossary/
 
 [^ap-semic]: https://interoperable-europe.ec.europa.eu/collection/semic-support-centre/application-profiles-what-are-they-and-how-model-and-reuse-them-properly-look-through-dcat-ap#:~:text=any%20other%20AP.-,Background,-To%20provide%20some
+
+[^semic-guide]: https://semiceu.github.io/style-guide/1.0.0/terminological-clarifications.html
+
+[^dcat-ap-scope]: https://semiceu.github.io/DCAT-AP/releases/3.0.0/#scope-of-the-application-profile
