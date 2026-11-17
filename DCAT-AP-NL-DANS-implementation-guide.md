@@ -447,7 +447,39 @@ The advised vocabulary to use is the "Data theme" http://publications.europa.eu/
 
 Other possible themes are [ECON](https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme/ECON) Economy and finance & [EDUC](https://op.europa.eu/web/eu-vocabularies/concept/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme/EDUC) Education, culture and sport, but these seem to be too specific and not matching the SSH DS and ODISSEI Portal domains. https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/data-theme contains more detailed info 
 
+#### Themes using the Dataverse citation subject
 
+Using the subject field from the Dataverse citation block seems to be the most acceptable approach for determining a `dcat:theme`, although the two are not the same thing. The Dataverse subject terms where inspired by the Library of Congress subject classification and indicate the research discipline. Whereas the EU categories are largely aligned with policy domains and areas of government responsibility. 
+
+Because our Data Stations hold research data, the `TECH` theme would be the best default. It stands for "Science and technology," so all the data we hold should be scientific, and this theme is therefore appropriate. We just always add this one and therfore we fullfill that minimal requirment. 
+
+In addition to that theme, some subjects could be used to add extra themes because they have a natural mapping. The following table shows which subjects can be mapped to which EU theme codes.
+
+Given a `CODE`, the URI is `http://publications.europa.eu/resource/authority/data-theme/{CODE}`.
+
+| Dataverse (research) subject | EU theme code | Vocabulary `prefLabel` |
+|---|---|---|
+| Medicine, Health and Life Sciences | HEAL | Health |
+| Agricultural Sciences | AGRI | Agriculture, fisheries, forestry and food |
+| Earth and Environmental Sciences | ENVI | Environment |
+| Social Sciences | SOCI | Population and society |
+| Law | JUST | Justice, legal system and public safety |
+| Business and Management | ECON | Economy and finance |
+
+The other Dataverse subjects are not mapped to this EU vocabulary:
+- Arts and Humanities
+- Astronomy and Astrophysics
+- Chemistry
+- Computer and Information Science
+- Engineering
+- Mathematical Sciences
+- Physics
+- Other
+Note that Engineering might map to `TECH` also, but it is already there. 
+
+We might find official vocabularies to use for these, but this was not pursued.
+
+Note that other SKOS concepts from official vocabularies can also be mapped to `dcat:theme` if they are available in the dataset metadata. For SSH, this is done using values from the AAT and ELSST thesauri in the `dansSocialSciences` metadata block.
 
         **Important:  In the ODISSEI Portal the controlled terms, except "Audience" *are not written* into to the metadata as URI, but simply as its label strings. It is unfortunate this is such, as we can not link to the name-entity behind those labels.** String can be used as `dcat:dataTheme` but it is not ideal. 
         See sections of metadata from [doi:10.60641/TR3E-M937](https://portal.odissei.nl/dataset.xhtml?persistentId=doi:10.60641/TR3E-M937)
