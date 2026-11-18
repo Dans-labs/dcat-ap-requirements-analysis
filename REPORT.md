@@ -64,9 +64,17 @@ The following tables display a selection of DCAT classes and properties and thei
 
 > An Application Profile is a data specification aimed to facilitate the data exchange in a well-defined application context. It re-uses concepts from one or more semantic data specifications, while adding more specificity, by identifying mandatory, recommended, and optional elements [^semic-guide]
 
-***DCAT-AP*** focuses on providing the resources to describe in a machine-readable way, the universe of data catalogues, datasets and data services. Like the definition of Application-Profile states, builds upon the DCAT3 vocabulary's classes and properties, as well on other RDF vocabularies, such as [Dublin Core Terms](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/), [SKOS](https://www.w3.org/2009/08/skos-reference/skos.html) or [FOAF](http://xmlns.com/foaf/0.1/). It is developed, governed and maintained by the [Semantic Interoperability Community (SEMIC)](https://github.com/SEMICeu), within the umbrella of the [Interoperable Europe](https://interoperable-europe.ec.europa.eu/interoperable-europe) initiative and its overall goal of strengthening EU's public sector interoperability. 
-DCAT-AP is core context 
+***DCAT-AP***, like the definition of Application-Profile states, builds upon the DCAT3 vocabulary's classes and properties, as well on other RDF vocabularies, such as [Dublin Core Terms](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/), [SKOS](https://www.w3.org/2009/08/skos-reference/skos.html) or [FOAF](http://xmlns.com/foaf/0.1/).
+It provides a framework to describe, through machine-readable RDF, the universe of data catalogues, datasets and data services.
+
+It is developed, governed and maintained by the [Semantic Interoperability Community (SEMIC)](https://github.com/SEMICeu), under the umbrella of the [Interoperable Europe](https://interoperable-europe.ec.europa.eu/interoperable-europe) initiative and the overall goal of strengthening EU's public sector interoperability.
+
+DCAT-AP Only minimal expectations are expressed by DCAT-AP. 
+(How is DCAT-AP providing the resources to describe)
+
  it does not impose any requirements on data systems, apart from being able to "export and import data in RDF in conformance with this Application Profile." 
+
+Mostly within the EU, we are seeing DCAT-AP In the past decade, DCAT-AP has grown from a single specification to a whole ecosystem of related and interconnected specifications."
 
 >  Although this is still at the core of the specification, **DCAT-AP is not limited to public accessible Open Data, but can be applied to any kind of datasets. In the past decade, DCAT-AP has grown from a single specification to a whole ecosystem of related and interconnected specifications.** 
 
