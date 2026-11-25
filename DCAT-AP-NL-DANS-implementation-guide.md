@@ -182,9 +182,9 @@ In essence this property's value is a node with the email address and a bit more
 
 Note: that dct:identifier was a personal addition.
 
-### property dct:creator  target class foaf:Agent
+### property dct:creator target class foaf:Agent
 
-* dct:Creator An entity responsible for producing the dataset. 
+* dct:creator - property denotes An entity responsible for producing the dataset. 
 * foaf:Agent - Any entity carrying out actions with respect to the entities Catalogue and the Catalogued Resources. 
 * foaf:name - mandatory property for `foaf:Agent` instances
 
@@ -265,8 +265,25 @@ This might be easier for SSH DS, where creators are often individual (`http://pu
 * If the Agent is an organisation, the use of the Organization Ontology is recommended. 
 * there can only be 1 publisher
 
+**For DVNL**
 
-For SSH DS
+It should be the institution that publisher in DataverseNL (present in AOI-ORE metadata export)
+
+For instances in [dataset doi:10.34894/XNVSGK](https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/XNVSGK) [OAI-ORE export](https://dataverse.nl/api/datasets/export?exporter=OAI_ORE&persistentId=doi%3A10.34894/XNVSGK) we want to select the level above "DataverseNL", namely "Maastricht University"
+
+![Extract of the OAI-ORE metadata export](img/DVNL-oai-ore.png)
+
+
+
+
+```json
+   dct:publisher [
+     a foaf:Agent ;
+     foaf:name "DANS Data Station Social Sciences and Humanities";
+     ] ;
+```
+
+**For SSH DS**
 
 ```json
    dct:publisher [
@@ -569,9 +586,9 @@ In DCAT-AP-NL <https://geonovum.github.io/DCAT-AP-NL30/#dataset-theme> is stated
 *A catalogue or repository that hosts the Datasets or Data Services being described.*
 
 Class documentation:
+
 * https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#catalog-dcat-catalog
 * https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue
-
 
 ## Catalog Mandatory Properties
 
@@ -590,9 +607,29 @@ Class documentation:
 
 Note:
 
-- ODISSEI Consortium ROR is https://ror.org/03m8
-- DANS ROR is https://ror.org/008pnp284
+* ODISSEI Consortium ROR is <https://ror.org/03m8>
+* DANS ROR is <https://ror.org/008pnp284>
 
+**Example dcat:Catalog instance for DataverseNL:**
+
+```<https://dataverse.nl/>
+        rdf:type           dcat:Catalog;
+        dct:creator        <https://ror.org/008pnp284>;
+        dct:description    "TODO: DataverseNL description"@en;
+        dct:publisher      <https://ror.org/008pnp284>;
+        dct:title          "DataverseNL";
+        dcat:contactPoint [
+            a vcard:Organization ;
+            vcard:fn "Data Archiving Networked Services (DANS)";
+            vcard:hasEmail <mailto:"info@dataverse.nl"> ;
+            vcard:hasURL "https://dans.knaw.nl/" ;
+            vcard:organization-name "DANS" ;
+            dct:identifier <https://ror.org/008pnp284> .
+            ] ; 
+        dcat:dataset       <https://doi.org/BAR/FOO> .
+```
+
+**Example dcat:Catalog instance for ODISSEI Portal:**
 
 ```<https://portal.odissei.nl/>
         rdf:type           dcat:Catalog;
