@@ -4,9 +4,19 @@
 
 ### Technical Requirements analysis/scoping
 
-* (outdate) **[DCAT-AP-NL-DANS-reqs.md](DCAT-AP-NL-DANS-reqs.md)** - Technical Requirements
-  * up-to-date version in [DCAT-AP-NL-DANS-reqs.docx](https://knaw.sharepoint.com/:w:/r/sites/msteams_d7e185/Gedeelde%20documenten/General/Deliverables/2026/2026-D06-DCAT-AP/DCAT-AP-NL-DANS-reqs.docx?d=we1674500575343ec9fd5bdc405040e7f&csf=1&web=1&e=MmCAPW) 
+For SSH Data Station
+
+* Requirements [DCAT-AP-NL-DANS-reqs.docx](https://knaw.sharepoint.com/:w:/r/sites/msteams_d7e185/Gedeelde%20documenten/General/Deliverables/2026/2026-D06-DCAT-AP/DCAT-AP-NL-DANS-reqs.docx?d=we1674500575343ec9fd5bdc405040e7f&csf=1&web=1&e=MmCAPW) 
+
+For DataverseNL
+
+* Requirements [DCAT-AP-NL-DVNL.docx](https://knaw.sharepoint.com/:w:/s/TEAM-TEAM-IST-DANS/cQp0ckyDuj22RoeOJ_FYbtR_EgUDoK7k3TxlU_6gEZI3PKJD3A)
+
+
+**Implementation Guide (for DataverseNL, SSH Data Station, and ODISSEI Portal)**
+
 * **[DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md)** - implementation guidelines
+
 
 ### Testing & Validation
 
