@@ -24,64 +24,31 @@ See [csvs/ap-nl-dataset-mand-props.csv](csvs/ap-nl-dataset-mand-props.csv) & [cs
 
 * http://purl.org/dc/terms/description -
   * value for ODP: xsd:string
-  * value for SSH DS: sh:datatype rdf:langString 
+  * value for SSH DS: sh:datatype rdf:langString
+  * value for DVN: xsd:string
+
 * http://purl.org/dc/terms/title  - for SSH DS sh:datatype rdf:langString 
   * value for ODP: xsd:string
   * value for SSH DS: sh:datatype rdf:langString 
+  * value for DVN: xsd:string
 
 **DCAT-AP-NL mandatory properties of dcat:Dataset:**
 
-* http://purl.org/dc/terms/accessRights - see section [property dct:accessRights target class dct:RightsStatement](#property-dctaccessrights-target-class-dctrightsstatemkeent)
+* <s>http://purl.org/dc/terms/accessRights</s> - not implemented for the moment due to the legal nature of this property
 * http://www.w3.org/ns/dcat#contactPoint 
 * http://purl.org/dc/terms/creator 
 * http://purl.org/dc/terms/identifier 
 * http://purl.org/dc/terms/publisher 
 * http://www.w3.org/ns/dcat#theme
-
 * http://www.w3.org/ns/dcat#distribution 
-   * dcat:distribution is conditional (for datasets that hold files) but it is very important property
+  * dcat:distribution is conditional (for datasets that hold files) but it is very important property
 
-## Dataset Recommended Properties
-
-Recommended Dataset properties from [DCAT-AP-NL Dataset](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset) are marked with A in the documentation table and formalized in [dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl](dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl). DCAT-AP Dataset recommended properties are formalized in [dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl](dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl).
-
-[csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv) summarizes them.
-
-Below is the same list, with the ones to implement, in bold. And crossed the ones that are not relevant for our context   
-
-* **http://www.w3.org/ns/dcat#keyword**  0..1   literal 	A keyword or tag describing the Dataset. 
-    * ODISSEI Portal: use  Keyword ELSST URI (Enriched Metadata block)
-    * SSH DS: Use "Keyword Getty AAT" & "Keyword ELSST" labels - Note: in the future of DANS' dataverse, all these keywords might be migrated to the generic keyword field which will require changing the source location of the keyword  
-* **http://www.w3.org/ns/dcat#landingPage**    URL
-* <s>http://purl.org/dc/terms/conformsTo</s> 0..1 Literal An established standard to which the described resource conforms.
-* <s>http://purl.org/dc/terms/spatial</s> NA
-* <s>http://purl.org/dc/terms/temporal</s> NA
-
-
-## Dataset Optional Properties
-
-Optional Dataset properties DCAT-AP-NL & DCAT-AP COULD be implemented, if they are "low-hanging-fruit" and provide important information for the DCAT metadata export.
-
-From [DCAT-AP-NL Dataset](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset) are marked with "O" in the documentation table and formalized in [dcat-ap-nl/shapes/dcat-ap-nl-OPT.ttl](dcat-ap-nl/shapes/dcat-ap-nl-OPT.ttl). DCAT-AP Dataset recommended properties are formalized in [dcat-ap-nl/shapes/dcat-ap-OPT.ttl](dcat-ap-nl/shapes/dcat-ap-OPT.ttl) .
-
-
-## Dataset Object Properties
-Some of the properties (object properties) require its value to be another instance of a class node, which can be implemented with its unique URI or a blank node.
-
-**Dataset *mandatory* object properties are:**
-
-* property dct:accessRights (1..1) target class dct:RightsStatement
-* property dcat:contactPoint (1..1) target class vcard:Kind
-* property dct:creator (1..n) target class foaf:Agent
-* property dct:publisher (1..1)target class foaf:Agent
-* property dcat:theme (1..n) target class skos:Concept from http://publications.europa.eu/resource/authority/data-theme
-* property dcat:distribution (0..n) target class dcat:Distribution (conditional, if there are files in dataset)
-<!-- 
-**Dataset *recommended* object properties are:**
-
-**Dataset *optional* object properties are:** -->
+## Important Properties' Details
 
 ### property dct:accessRights target class dct:RightsStatement
+
+**Note: dct:accessRights is NOT IMPLEMENTED, for the moment, in  DANS repositories, due to the legal nature of this property, for which we miss some requirements.**
+
 
 In DCAT-AP the dcat:Dataset dct:accessRights property answers the question: *is there a legal ground to prevent the access to the dataset?*. In other words *whether a Dataset whose Distributions contain both PUBLIC and RESTRICTED instances is to be considered public or restricted depends on the specific applicable legal provisions.*
 
@@ -92,7 +59,10 @@ And the target class of dct:accessRights, `dct:RightsStatement`, is defined as:
 
 > A statement about the intellectual property rights (IPR) held in or over a resource, a legal document giving official permission to do something with a resource, or a statement about access rights. [^2]
 
-There is a *recommendation* to use controlled values from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right)(:PUBLIC, :RESTRICTED, :NON_PUBLIC), in order to stimulates interoperability, but is not a requirement. [^3] Non-the-less it seems relevant to use these URIs. **For Dataverses Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>` seems the most appropriate deafult value, since the restrictions are made at the file level and not Dataset level - which we will be able to express in dcat:Distribution entity (see [Section:property dcat:distribution target class dcat:Distribution](#property-dcat:distribution-target-class-dcat:Distribution)) 
+There is a *recommendation* to use controlled values from [Access Rights Named Authority List](http://publications.europa.eu/resource/authority/access-right)(:PUBLIC, :RESTRICTED, :NON_PUBLIC), in order to stimulates interoperability, but is not a requirement. [^3] Non-the-less it seems relevant to use these URIs. 
+
+<!--
+**For Dataverses Use** `dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC>` seems the most appropriate deafult value, since the restrictions are made at the file level and not Dataset level - which we will be able to express in dcat:Distribution entity (see [Section:property dcat:distribution target class dcat:Distribution](#property-dcat:distribution-target-class-dcat:Distribution)) 
 
 Make sure to also include the following statements, since at the source these concepts are instances of `skos:Concept` and `euvoc:AccessRight`, however the property dct:accessRights has range dct:RightsStatement, so we need to indicate that those 2 concepts are instances of  dct:RightsStatement.
 
@@ -111,7 +81,7 @@ The recommendation is to follow Dataverse + Datacite interpretation that **a Dat
 
 ### supplement dct:accessRights with dct:license
 
-<div style="border: 4px solid orange; padding: 10px; border-radius: 5px;">
+<div style="border: 4px solid #00a7d4; padding: 10px; border-radius: 5px;">
 Although DCAT-AP, does not make this recommendation **We should supplement the accessRights statement, by adding to Dataset:**
 
 * `dct:license <https://doi.org/10.17026/fp39-0x58>; #DANS License` OR `dct:license <http://creativecommons.org/publicdomain/zero/1.0>`, etc (see Dataverse license metadata below)
@@ -126,6 +96,26 @@ Although DCAT-AP, does not make this recommendation **We should supplement the a
         },
 ```
 
+## Dataset Recommended Properties
+
+Recommended Dataset properties from [DCAT-AP-NL Dataset](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset) are marked with A in the documentation table and formalized in [dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl](dcat-ap-nl/shapes/dcat-ap-nl-SHACL-aanbevolen.ttl). DCAT-AP Dataset recommended properties are formalized in [dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl](dcat-ap/releases/3.0.1/html/shacl/shapes_recommended.ttl). [csvs/ap-nl-dataset-recommended-props.csv](csvs/ap-nl-dataset-recommended-props.csv) summarizes them.
+
+Below is the same list, with the ones to implement, in bold. And crossed the ones that are not relevant for our context
+
+* **http://www.w3.org/ns/dcat#keyword**  0..1   literal 	A keyword or tag describing the Dataset. 
+    * ODISSEI Portal: use  Keyword ELSST URI (Enriched Metadata block)
+    * SSH DS: Use "Keyword Getty AAT" & "Keyword ELSST" labels - Note: in the future of DANS' dataverse, all these keywords might be migrated to the generic keyword field which will require changing the source location of the keyword  
+* **http://www.w3.org/ns/dcat#landingPage**    URL
+* <s>http://purl.org/dc/terms/conformsTo</s> 0..1 Literal An established standard to which the described resource conforms.
+* <s>http://purl.org/dc/terms/spatial</s> NA
+* <s>http://purl.org/dc/terms/temporal</s> NA
+
+## Dataset Optional Properties
+
+Optional Dataset properties DCAT-AP-NL & DCAT-AP COULD be implemented, if they are "low-hanging-fruit" and provide important information for the DCAT metadata export.
+
+In [DCAT-AP-NL Dataset](https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#dataset-dcat-dataset) are marked with "O" in the documentation table and formalized in [dcat-ap-nl/shapes/dcat-ap-nl-OPT.ttl](dcat-ap-nl/shapes/dcat-ap-nl-OPT.ttl). DCAT-AP Dataset recommended properties are formalized in [dcat-ap-nl/shapes/dcat-ap-OPT.ttl](dcat-ap-nl/shapes/dcat-ap-OPT.ttl) .
+
 ```json
 xyz a dcat:Dataset ;
     dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
@@ -133,6 +123,7 @@ xyz a dcat:Dataset ;
     dct:distribution :dist01 .
 ```
 </div>
+-->
 
 ### property dcat:contactPoint target class vcard:Kind
 
@@ -160,15 +151,34 @@ In essence this property's value is a node with the email address and a bit more
         rdf:type                 vcard:Organization;
         dct:identifier          <https://ror.org/008pnp284> ;
         vcard:fn                 "Data Archiving Networked Services (DANS)";
-        vcard:hasEmail           <mailto:info@dans.knaw.nl">;
+        vcard:hasEmail           <mailto:info@dans.knaw.nl>;
         vcard:hasURL             <https://dans.knaw.nl/>;
         vcard:organization-name  "DANS" .
 ```
+
+<div style="border: 4px solid #00a7d4; padding: 10px; border-radius: 5px;">
+
+**contactPoint for DataverseNL**
+
+```json
+<https://dans.knaw.nl/#contact>
+        rdf:type                 vcard:Organization;
+        dct:identifier          <https://ror.org/008pnp284> ;
+        vcard:fn                 "Data Archiving Networked Services (DANS)";
+        vcard:hasEmail           <mailto:info@dataverse.nl>;
+        vcard:hasURL             <https://dans.knaw.nl/>;
+        vcard:organization-name  "DANS" .
+```
+
+</div>
+
+
+
 Note: that dct:identifier was a personal addition.
 
-### property dct:creator  target class foaf:Agent
+### property dct:creator target class foaf:Agent
 
-* dct:Creator An entity responsible for producing the dataset. 
+* dct:creator - property denotes An entity responsible for producing the dataset. 
 * foaf:Agent - Any entity carrying out actions with respect to the entities Catalogue and the Catalogued Resources. 
 * foaf:name - mandatory property for `foaf:Agent` instances
 
@@ -249,8 +259,20 @@ This might be easier for SSH DS, where creators are often individual (`http://pu
 * If the Agent is an organisation, the use of the Organization Ontology is recommended. 
 * there can only be 1 publisher
 
+<div style="border: 4px solid #00a7d4; padding: 10px; border-radius: 5px;">
 
-For SSH DS
+**For DVNL**
+
+It should be the institution that publisher in DataverseNL (present in AOI-ORE metadata export)
+
+For instances in [dataset doi:10.34894/XNVSGK](https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/XNVSGK) [OAI-ORE export](https://dataverse.nl/api/datasets/export?exporter=OAI_ORE&persistentId=doi%3A10.34894/XNVSGK) we want to select the level above "DataverseNL", namely "Maastricht University"
+
+![Extract of the OAI-ORE metadata export](img/DVNL-oai-ore.png)
+
+</div>
+
+
+**For SSH DS**
 
 ```json
    dct:publisher [
@@ -259,7 +281,7 @@ For SSH DS
      ] ;
 ```
 
-For the ODISSEI Portal. It will be a bit tricky, since there are multiple publishers, however that information is not correct in the ODP (see [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369))
+**For the ODISSEI Portal**. It will be a bit tricky, since there are multiple publishers, however that information is not correct in the ODP (see [ticket ODSP-369](https://drivenbydata.atlassian.net/browse/ODSP-369))
 
 In the mean time, until the bug is fixed, we might need to go with the incorrect statement `publisher = ODISSEI Portal`, captured from the Portal metadata.
 
@@ -271,7 +293,6 @@ In the mean time, until the bug is fixed, we might need to go with the incorrect
      ] ;
 ```
 
-<div style="border: 4px solid orange; padding: 10px; border-radius: 5px;">
 
 ### property dcat:distribution target class dcat:Distribution
 
@@ -436,7 +457,7 @@ exampleMS:1T2p3o4B-dist-SHP a dcat:Distribution;
    dcat:mediaType <https://www.iana.org/assignments/media-types/application/vnd.shp>
    .
 ```
-</div>
+
 
 
 ### Dataset *Data Theme* Controlled Values
@@ -553,9 +574,9 @@ In DCAT-AP-NL <https://geonovum.github.io/DCAT-AP-NL30/#dataset-theme> is stated
 *A catalogue or repository that hosts the Datasets or Data Services being described.*
 
 Class documentation:
+
 * https://docs.geostandaarden.nl/dcat/dcat-ap-nl30/#catalog-dcat-catalog
 * https://semiceu.github.io/DCAT-AP/releases/3.0.1/#Catalogue
-
 
 ## Catalog Mandatory Properties
 
@@ -574,9 +595,32 @@ Class documentation:
 
 Note:
 
-- ODISSEI Consortium ROR is https://ror.org/03m8
-- DANS ROR is https://ror.org/008pnp284
+* ODISSEI Consortium ROR is <https://ror.org/03m8>
+* DANS ROR is <https://ror.org/008pnp284>
 
+<div style="border: 4px solid #00a7d4; padding: 10px; border-radius: 5px;">
+
+**Example dcat:Catalog instance for DataverseNL:**
+
+```<https://dataverse.nl/>
+        rdf:type           dcat:Catalog;
+        dct:creator        <https://ror.org/008pnp284>;
+        dct:description    "TODO: DataverseNL description"@en;
+        dct:publisher      <https://ror.org/008pnp284>;
+        dct:title          "DataverseNL";
+        dcat:contactPoint [
+            a vcard:Organization ;
+            vcard:fn "Data Archiving Networked Services (DANS)";
+            vcard:hasEmail <mailto:"info@dataverse.nl"> ;
+            vcard:hasURL "https://dans.knaw.nl/" ;
+            vcard:organization-name "DANS" ;
+            dct:identifier <https://ror.org/008pnp284> .
+            ] ; 
+        dcat:dataset       <https://doi.org/BAR/FOO> .
+```
+</div>
+
+**Example dcat:Catalog instance for ODISSEI Portal:**
 
 ```<https://portal.odissei.nl/>
         rdf:type           dcat:Catalog;
