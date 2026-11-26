@@ -17,10 +17,10 @@ For DataverseNL
 
 * **[DCAT-AP-NL-DANS-implementation-guide.md](DCAT-AP-NL-DANS-implementation-guide.md)** - implementation guidelines
 
-
 ### Testing & Validation
 
-* [SHACL/DANS-shacl.ttl](SHACL/DANS-shacl.ttl) - DCAT-AP-NL requirements for DANS
+* [SHACL/DANS-SSH-shacl.ttl](SHACL/DANS-SSH-shacl.ttl) - SHACL for [DANS SSH Data Station](https://ssh.datastations.nl/) DCAT-AP dataset metadata exports
+* [SHACL/DANS-DVNL-shacl.ttl](SHACL/DANS-DVNL-shacl.ttl) - SHACL for [DataverseNL](https://dataverse.nl/) DCAT-AP dataset metadata exports
 * [Makefile](Makefile) - includes tests:
   * requirements: Apache Jena command-line utilities (see <https://jena.apache.org/download/>)
   * `make test_ODP_staging_datasets`  (requires: being inside DANS VPN)
